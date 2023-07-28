@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+    --header-height: 80px;
+    --footer-height: 25px;
+    --altClr: #1544c0;
+    --lightClr: #edebe8;
+    --darkClr: #5e6072;
+    --ctaInvClr: #5210ac;
+    --ctaClr: #eb6909;
+
+    --saintBlue: #001489;
+    --saintBlueLight: #92c3fc;
+    --saintOrange: #eb6909;
+    --saintOrangeLight: #eb690925;
+    --saintGreen: #97ca40;
+    --saintGreenLight: #97ca4025;
+    --saintPurple: #462e83;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --foreground-rgb: 255, 255, 255;
+      --background-start-rgb: 0, 0, 0;
+      --background-end-rgb: 0, 0, 0;
+    }
+  }
+
+  body {
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgb(var(--background-end-rgb))
+      )
+      rgb(var(--background-start-rgb));
+  }
+
+  header {
+    @apply sticky z-10 flex w-full h-[var(--header-height)] items-center justify-between px-4 py-4 transition-all lg:px-6 xl:px-10 lg:py-6 bg-[var(--saintBlue)] text-white duration-200;
+  }
+
+  footer {
+    @apply relative w-full items-center justify-between px-16 py-2 md:py-16 transition-all lg:px-10 lg:py-6  bg-[var(--saintBlue)] text-white;
+  }
+}
+
+@layer components {
+  .headerLink {
+    @apply max-w-xs mx-auto md:ml-7 p-2 cursor-pointer transition duration-300 hover:bg-[var(--saintBlueLight)] md:text-lg font-medium hover:text-black hover:rounded-lg;
+  }
+
+  .bannerButton {
+    @apply flex items-center gap-x-2 rounded px-5 py-1.5 text-sm font-semibold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl;
+  }
+
+  .menuDesktop {
+    @apply lg:relative lg:flex lg:space-x-1  xl:space-x-4 lg:min-h-0 lg:top-0 lg:px-0 lg:py-0 lg:space-y-0 lg:translate-x-0 lg:text-base;
+  }
+
+  .menuMobile {
+    @apply fixed left-0 w-2/3 top-[var(--header-height)]  min-h-[calc(100vh-var(--header-height))] px-8 pt-8 space-y-4 bg-[var(--saintBlue)] lg:bg-[var(--saintBlueLigh)] transform text-left transition duration-300;
+  }
+  .title {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl;
+  }
+}
