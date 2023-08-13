@@ -28,14 +28,14 @@ const links = [
     label: 'Beneficios',
     icon: <IoMdHappy />,
     size: 24,
-    route: '/vehicles',
+    route: '/beneficios',
     show: '1',
   },
   {
     label: 'Nosotros',
     icon: <AiFillTool />,
     size: 24,
-    route: '/about',
+    route: '/nosotros',
     show: '1',
   },
   {

@@ -8,7 +8,7 @@ import logo from '../../../public/assets/images/logos/logo.png';
 export const Footer = ({ id = 'footer' }) => {
   return (
     <footer className="" id={id}>
-      <div className="max-w-6xl flex flex-col md:flex-row justify-between items-center mx-auto">
+      <div className="flex flex-col md:flex-row justify-between items-center mx-auto">
         <Link href="/">
           <div className="flex items-center">
             <Image src={logo} alt="Logo" className="w-full h-auto" />
