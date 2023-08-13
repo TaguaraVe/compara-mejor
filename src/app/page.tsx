@@ -4,7 +4,6 @@ import { ContactSection } from '@/components/ContactSection';
 export default function LandinPage() {
   return (
     <main className="relative h-full">
-      <h1>Compara Mejor</h1>
       <HeroSliderSection />
       <ContactSection />
       {/* <Services /> */}

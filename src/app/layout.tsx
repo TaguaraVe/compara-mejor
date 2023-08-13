@@ -17,6 +17,13 @@ export const myTitle = localFont({
   src: '/fonts/coolvetica/coolvetica_rg.otf',
   display: 'swap',
 });
+
+// Font files can be colocated inside of `app`
+export const mySubtitle = localFont({
+  src: '/fonts/ailerons/Ailerons-Typeface.otf',
+  display: 'swap',
+});
+
 // Font files can be colocated inside of `app`
 export const Tahoma = localFont({
   src: '/fonts/tahoma.woff',
@@ -38,7 +45,7 @@ export default function RootLayout({
       <body className={`${Tahoma.className} min-h-screen`}>
         <ReduxProvider>
           <Header />
-          {children}
+          <div className="pt-[var(--header-height)]">{children}</div>
           <Footer />
         </ReduxProvider>
       </body>

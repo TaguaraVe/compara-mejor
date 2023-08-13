@@ -101,7 +101,7 @@ export const ContactForm = () => {
         placeholder="ingrese su mensaje o comentario"
       />
       <div className="mx-auto text-center">
-        <button className="btn bg-[var(--saintBlue)] rounded-lg px-12 py-1 text-white hover:bg-[var(--saintBlueLight)]">
+        <button className="btn bg-ctaInv rounded-lg px-12 py-1 text-white hover:bg-opacity-80">
           Enviar
         </button>
       </div>

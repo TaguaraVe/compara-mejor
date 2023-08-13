@@ -7,6 +7,17 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        error: '#FF3B30',
+        success: '#34C759',
+        black: '#f1f1f',
+        white: '#fafafa',
+        myBlue: '#18baed',
+        myGreen: '#57a724',
+        myRed: '#e14558',
+        ctaInv: '#5210ac',
+        cta: '#eb6909',
+      },
       backgroundImage: {
         'access-pattern': "url('/assets/images/bgs/bg-access.jpg')",
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

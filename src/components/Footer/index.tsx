@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { FaTwitter, FaFacebook, FaInstagram } from 'react-icons/fa';
 import Link from 'next/link';
 
-import logo from '../../../public/assets/images/logos/saint_logo.png';
+import logo from '../../../public/assets/images/logos/logo.png';
 
 export const Footer = ({ id = 'footer' }) => {
   return (

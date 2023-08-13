@@ -14,7 +14,7 @@ import {
 import { AiFillTool } from 'react-icons/ai';
 import { IoMdHappy } from 'react-icons/io';
 
-import logo from '../../../public/assets/images/logos/saint_logo.png';
+import logo from '../../../public/assets/images/logos/logo.png';
 
 const links = [
   {
