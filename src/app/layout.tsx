@@ -45,7 +45,7 @@ export default function RootLayout({
       <body className={`${Tahoma.className} min-h-screen`}>
         <ReduxProvider>
           <Header />
-          <div className="pt-[var(--header-height)] h-[calc(100vh-(var(--header-height)))]">
+          <div className="pt-[var(--header-height)] min-h-[calc(100vh-(var(--header-height)))]">
             {children}
           </div>
           <Footer />

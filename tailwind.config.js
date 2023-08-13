@@ -19,7 +19,7 @@ module.exports = {
         cta: '#eb6909',
       },
       backgroundImage: {
-        'access-pattern': "url('/assets/images/bgs/bg-access.jpg')",
+        'about-pattern': "url('/assets/images/bgs/result.jpg')",
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',

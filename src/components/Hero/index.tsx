@@ -13,7 +13,7 @@ export const HeroSliderSection = () => {
   const router = useRouter();
 
   const autoScroll = true;
-  let intervalTime = 5000;
+  let intervalTime = 15000;
   let slideInterval: NodeJS.Timer;
 
   const autoAdvance = () => {
@@ -74,19 +74,20 @@ export const HeroSliderSection = () => {
               key={i}
             >
               <div className=" absolute top-1/2 translate-x-1/2 right-1/2 -translate-y-1/2 flex flex-col justify-center items-center  bg-slate-100 bg-opacity-70 z-10 w-2/5 h-20 md:h-44 p-8  rounded-2xl mx-auto  text-clamped leading-none text-[var(--darkClr)] ">
+                <h1
+                  className={`mx-auto text-center text-2xl md:text-5xl text-black mb-4 ${mySubtitle.className}`}
+                >
+                  {slide.subtitle}
+                </h1>
                 <h2 className={`mx-auto text-center ${myTitle.className}`}>
                   {slide.title}
                 </h2>
-
-                <h3 className={`mx-auto text-center ${mySubtitle.className}`}>
-                  {slide.subtitle}
-                </h3>
               </div>
               <div className="relative w-full h-full">
                 <Image
                   className="w-full bg-cover"
-                  width={1440}
-                  height={900}
+                  width={960}
+                  height={600}
                   src={slide.image}
                   alt={slide.alt}
                 />
