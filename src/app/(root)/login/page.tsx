@@ -7,9 +7,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Schema as schema } from './formValidation';
 import { CustomInput } from '@/components/common/CustomInput';
-import logo from '../../../../public/assets/images/logos/emall.png';
+import logo from '../../../../public/assets/images/logos/logo.png';
 import { postLogin } from '@/libs/postLogin';
 import { useRouter } from 'next/navigation';
+import { mySubtitle, myTitle } from '@/app/layout';
 
 interface FormData {
   email: string;
@@ -51,19 +52,23 @@ export default function Login() {
   return (
     <section
       className={
-        'relative w-full h-[calc(100vh-var(--header-height))] bg-access-pattern bg-cover bg-no-repeat bg-left-top md:py-4  md:p-[10vw] flex flex-col justify-center items-center md:items-end'
+        'relative w-full h-[calc(100vh-var(--header-height))] bg-login-pattern bg-cover bg-no-repeat bg-blend-overlay bg-[#2d2d2d]  bg-left-top md:py-4  md:pl-[10vw] flex flex-col justify-center items-center md:items-start'
       }
     >
       <article
         className={
-          'h-[600px] max-w-[420px] w-full flex flex-col justify-center items-center bg-[#97c83c4d] rounded-xl'
+          'h-[600px] max-w-[420px] w-full flex flex-col justify-center items-center bg-white rounded-xl'
         }
       >
         <div className={'my-4'}>
-          <div className={'w-[300px] mb-12'}>
+          <div
+            className={
+              'w-[300px] mb-12 flex justify-center items-center mx-auto'
+            }
+          >
             <Image src={logo} alt="emall-logo" />
           </div>
-          <h2 className={'text-[2rem] text-[var(--darkClr)] font-bold '}>
+          <h2 className={`text-4xl text-center ${mySubtitle.className}`}>
             Gracias por volver
           </h2>
         </div>
@@ -102,7 +107,7 @@ export default function Login() {
 
             <button
               className={
-                'w-3/5 text-xl my-[4] bg-[var(--saintBlue)] py-3 px-10 mx-auto text-white'
+                'w-3/5 text-xl my-[4] bg-ctaInv hover:bg-ctaInv/80 py-3 px-10 mx-auto text-white'
               }
               type="submit"
             >
@@ -113,7 +118,7 @@ export default function Login() {
         <p className={'text-sm text-[var(--saintBlue)] mt-6 '}>
           ¿No tienes una cuenta aun?{' '}
           <Link href="/register" className="">
-            <span className="text-[var(--ctaClr)]">Registrarse</span>
+            <span className="text-cta">Registrarse</span>
           </Link>
         </p>
       </article>
