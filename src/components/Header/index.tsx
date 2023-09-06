@@ -32,6 +32,13 @@ const links = [
     show: '1',
   },
   {
+    label: 'Comparador',
+    icon: <IoMdHappy />,
+    size: 24,
+    route: '/viz',
+    show: '1',
+  },
+  {
     label: 'Nosotros',
     icon: <AiFillTool />,
     size: 24,
