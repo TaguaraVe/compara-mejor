@@ -32,7 +32,7 @@ export default function Login() {
       // dispatch(setCurrentUser)
       localStorage.setItem('currentUser', JSON.stringify(currentUser));
       reset();
-      router.replace('/balances');
+      router.replace('/viz');
     }
   };
 

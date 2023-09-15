@@ -32,7 +32,7 @@ const links = [
     show: '1',
   },
   {
-    label: 'Comparador',
+    label: 'Demo',
     icon: <IoMdHappy />,
     size: 24,
     route: '/viz',

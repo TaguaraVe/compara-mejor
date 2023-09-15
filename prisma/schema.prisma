@@ -48,3 +48,9 @@ model Price {
 
   @@index([productId], map: "Price_productId_fkey")
 }
+
+model User {
+  id       String @id @default(uuid()) @db.VarChar(40)
+  email    String @unique @db.VarChar(150)
+  password String @db.VarChar(150)
+}
