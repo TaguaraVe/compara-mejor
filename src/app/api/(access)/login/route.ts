@@ -5,12 +5,6 @@ import { prismadb } from '@/libs/prismadb';
 import { regExp } from '@/libs/regExp';
 
 export async function POST(req: Request) {
-  let currentUser = {
-    id: '0000-0000-0000-0001',
-    firstName: 'Visitante',
-    role: 'Visit',
-  };
-
   try {
     const body = await req.json();
     const { email, password } = body;
@@ -31,45 +25,35 @@ export async function POST(req: Request) {
       });
     }
 
-    // const user = await prismadb.users.findFirst({
-    //   where: {
-    //     email,
-    //   },
-    // });
+    const user = await prismadb.user.findFirst({
+      where: {
+        email,
+      },
+    });
 
-    // if (!user) {
-    //   return NextResponse.json({
-    //     status: 400,
-    //     success: false,
-    //     msg: 'Error --> User not Found',
-    //   });
-    // }
-
-    // const validPassword = await bcrypt.compare(password, user.password);
-
-    // if (!validPassword) {
-    //   return NextResponse.json({
-    //     status: 400,
-    //     success: false,
-    //     msg: 'Error --> wrong credentials',
-    //   });
-    // }
-
-    // const currentUser = {
-    //   id: user.id,
-    //   firstName: user.firstName,
-    //   lastName: user.lastName,
-    //   email: user.email,
-    //   cod_clie: user.cod_clie,
-    // };
-
-    if (email === 'j@comparamejor.cloud') {
-      currentUser = {
-        id: '1111-1111-1111-1111',
-        firstName: 'Jorge',
-        role: 'Admin',
-      };
+    if (!user) {
+      return NextResponse.json({
+        status: 400,
+        success: false,
+        msg: 'Error --> User not Found',
+      });
     }
+
+    const validPassword = await bcrypt.compare(password, user.password);
+
+    if (!validPassword) {
+      return NextResponse.json({
+        status: 400,
+        success: false,
+        msg: 'Error --> wrong credentials',
+      });
+    }
+
+    const currentUser = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+    };
 
     return NextResponse.json({ status: 200, currentUser });
   } catch (error) {
