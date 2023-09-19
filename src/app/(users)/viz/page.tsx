@@ -25,6 +25,18 @@ const Tableau = () => {
   const [vista, setVista] = useState([]);
   const [token, setToken] = useState(null);
 
+  const apiUrl = 'https://tableau-token-generator.vercel.app/token';
+  const getToken = async () => {
+    try {
+      const respuesta = await fetch(apiUrl);
+      const data = await respuesta.json();
+      setToken(data.token);
+      console.log('joder', token);
+    } catch (error) {
+      console.error('Hubo un error al obtener los datos:', error);
+    }
+  };
+
   const user = useSelector(selectCurrentUser);
 
   const getUserViz = async (id: string) => {
@@ -35,6 +47,12 @@ const Tableau = () => {
   };
 
   useEffect(() => {
+    getToken();
+    const intervalId = setInterval(getToken, 5 * 60 * 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
     if (user !== '') {
       getUserViz(user.id);
     }
@@ -43,6 +61,8 @@ const Tableau = () => {
   const nextViz = () => {
     current + 1 > vista.length ? setCurrent(0) : setCurrent(current + 1);
   };
+
+  console.log('el Token es ', token);
 
   return (
     <section>
