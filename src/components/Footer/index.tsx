@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { FaTwitter, FaFacebook, FaInstagram } from 'react-icons/fa';
+import { FaFacebook, FaInstagram } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import Link from 'next/link';
 
 import logo from '../../../public/assets/images/logos/logo.png';
@@ -22,7 +23,7 @@ export const Footer = ({ id = 'footer' }) => {
         <div className={'flex space-x-4 text-3xl'}>
           <a
             className={'hover:text-[var(--ctaClr)]'}
-            href="https://www.facebook.com/SaintdeVenezuela/"
+            href="https://twitter.com/comparamejor_Ve"
             target="_blank"
             rel="noreferrer"
             aria-label="Facebook"
@@ -31,7 +32,7 @@ export const Footer = ({ id = 'footer' }) => {
           </a>
           <a
             className={'hover:text-[var(--ctaClr)]'}
-            href="https://www.instagram.com/saintve/"
+            href="https://twitter.com/comparamejor_Ve"
             target="_blank"
             rel="noreferrer"
             aria-label="Instagram"
@@ -40,12 +41,12 @@ export const Footer = ({ id = 'footer' }) => {
           </a>
           <a
             className={'hover:text-[var(--ctaClr)]'}
-            href="https://twitter.com/saintve"
+            href="https://twitter.com/comparamejor_Ve"
             target="_blank"
             rel="noreferrer"
             aria-label="Twitter"
           >
-            <FaTwitter />
+            <FaXTwitter />
           </a>
         </div>
       </div>

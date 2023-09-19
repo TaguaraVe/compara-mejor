@@ -53,6 +53,7 @@ export async function POST(req: Request) {
       id: user.id,
       name: user.name,
       email: user.email,
+      user_role: user.user_role,
     };
 
     return NextResponse.json({ status: 200, currentUser });

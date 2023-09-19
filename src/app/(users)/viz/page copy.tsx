@@ -25,8 +25,8 @@ const Tableau = () => {
   const [current, setCurrent] = useState(0);
   const [vista, setVista] = useState(allViews[0].views);
   const user =
-    typeof window !== 'undefined' && localStorage.getItem('currentUser')
-      ? JSON.parse(localStorage.getItem('currentUser'))
+    typeof window !== 'undefined' && sessionStorage.getItem('currentUser')
+      ? JSON.parse(sessionStorage.getItem('currentUser'))
       : '';
 
   useEffect(() => {

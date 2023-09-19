@@ -12,32 +12,19 @@ export const fetchUsers = createAsyncThunk('users/getAllUsers', async () => {
 });
 
 const user: User =
-  typeof window !== 'undefined' && localStorage.getItem('user')
-    ? JSON.parse(localStorage.getItem('user'))
+  typeof window !== 'undefined' && sessionStorage.getItem('user')
+    ? JSON.parse(sessionStorage.getItem('user'))
     : {
         id: '',
         email: '',
-        firstName: '',
-        lastName: '',
+        name: '',
+        user_role: '',
       };
 
 const initialState = {
   currentUser: user,
-  entities: [],
   loading: false,
   showModalEmail: false,
-  showModalCalendar: false,
-  showModalConfirmDate: false,
-  especialista: {
-    id: '',
-    especialidad: '',
-    rating: 0,
-    descripcion: '',
-    First_name: '',
-    Last_name: '',
-    Email: '',
-    avatar: '',
-  },
 } as any;
 
 export const userSlice = createSlice({
@@ -51,34 +38,15 @@ export const userSlice = createSlice({
       state.currentUser = {
         id: '',
         email: '',
-        fisrtName: '',
-        lastName: '',
+        name: '',
+        user_role: '',
       };
-      state.entities = [];
-    },
-    setEspecialista: (state, action) => {
-      state.especialista = action.payload;
-    },
-    removeEspecialista: (state) => {
-      state.especialista = initialState.especialista;
-    },
-    openModalConfirmDate: (state) => {
-      state.showModalConfirmDate = true;
-    },
-    closeModalConfirmDate: (state) => {
-      state.showModalConfirmDate = false;
     },
     openModalEmail: (state) => {
       state.showModalEmail = true;
     },
     closeModalEmail: (state) => {
       state.showModalEmail = false;
-    },
-    openModalCalendar: (state) => {
-      state.showModalCalendar = true;
-    },
-    closeModalCalendar: (state) => {
-      state.showModalCalendar = false;
     },
   },
   extraReducers: (builder) => {
@@ -93,26 +61,11 @@ export const userSlice = createSlice({
   },
 });
 
-export const {
-  setEspecialista,
-  removeEspecialista,
-  setUser,
-  removeUser,
-  openModalCalendar,
-  closeModalCalendar,
-  openModalConfirmDate,
-  closeModalConfirmDate,
-  openModalEmail,
-  closeModalEmail,
-} = userSlice.actions;
+export const { setUser, removeUser, openModalEmail, closeModalEmail } =
+  userSlice.actions;
 
-export const selectShowModalCalendar = (state: RootState) =>
-  state.user.showModalCalendar;
-export const selectShowModalConfirmDate = (state: RootState) =>
-  state.user.showModalConfirmDate;
 export const selectShowModalEmail = (state: RootState) =>
   state.user.showModalEmail;
 export const selectCurrentUser = (state: RootState) => state.user.currentUser;
-export const selectEspecialista = (state: RootState) => state.user.especialista;
 
 export default userSlice.reducer;

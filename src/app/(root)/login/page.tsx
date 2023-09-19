@@ -1,16 +1,19 @@
 'use client';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
+
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Schema as schema } from './formValidation';
 import { CustomInput } from '@/components/common/CustomInput';
 import logo from '../../../../public/assets/images/logos/logo.png';
 import { postLogin } from '@/libs/postLogin';
-import { useRouter } from 'next/navigation';
 import { mySubtitle, myTitle } from '@/app/layout';
+import { setUser } from '@/features/users/userSlice';
 
 interface FormData {
   email: string;
@@ -18,6 +21,7 @@ interface FormData {
 }
 
 export default function Login() {
+  const dispatch = useDispatch();
   const [loginError, setLoginError] = useState({ isError: false, msg: '' });
   const router = useRouter();
 
@@ -28,9 +32,8 @@ export default function Login() {
       setLoginError({ isError: true, msg: data.msg });
     } else {
       const { currentUser } = await postLogin(values);
-      console.log('onSubmit Login', currentUser);
-      // dispatch(setCurrentUser)
-      localStorage.setItem('currentUser', JSON.stringify(currentUser));
+      dispatch(setUser(currentUser));
+      sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
       reset();
       router.replace('/viz');
     }
@@ -101,6 +104,7 @@ export default function Login() {
                 error={errors?.password}
                 label="Clave"
                 name="password"
+                type={'password'}
                 placeholder="Ingrese su contraseña"
               />
             </div>

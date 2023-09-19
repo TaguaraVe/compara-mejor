@@ -3,7 +3,6 @@ interface PostLoginParams {
   password: string;
 }
 export const postLogin = async (values: PostLoginParams) => {
-  console.log('En postLogin', values.email);
   try {
     const response = await fetch('/api/login', {
       method: 'POST',
