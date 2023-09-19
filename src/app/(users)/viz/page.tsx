@@ -44,7 +44,6 @@ const Tableau = () => {
     current + 1 > vista.length ? setCurrent(0) : setCurrent(current + 1);
   };
 
-
   return (
     <section>
       <div className="flex flex-col justify-center items-center p-2">
@@ -57,7 +56,7 @@ const Tableau = () => {
         <tableau-viz
           id="tableauViz"
           src={vista[current]}
-          token={token}>
+          token={token}
           toolbar="bottom"
           hide-tabs
         ></tableau-viz>
