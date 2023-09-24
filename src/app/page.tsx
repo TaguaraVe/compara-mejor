@@ -1,15 +1,13 @@
-import { HeroSliderSection } from '@/components/Hero';
 import { ContactSection } from '@/components/ContactSection';
+import { Hero } from '@/components/Hero/hero';
+import { Services } from '@/components/Services';
 
 export default function LandinPage() {
   return (
     <main className="relative h-full">
-      <HeroSliderSection />
+      <Hero />
+      <Services />
       <ContactSection />
-      {/* <Services /> */}
-      {/* <VideoSection title={'¿Cómo funciona?'} /> */}
-      {/* <Pricing /> */}
-      {/* <Faq /> */}
     </main>
   );
 }

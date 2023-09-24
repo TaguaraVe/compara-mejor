@@ -4,41 +4,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaBars, FaEnvelope, FaHome, FaTimes, FaUserAlt } from 'react-icons/fa';
-import { AiFillTool } from 'react-icons/ai';
-import { IoMdHappy } from 'react-icons/io';
+import { FaBars, FaTimes, FaUserAlt } from 'react-icons/fa';
 
 import { removeUser, selectCurrentUser } from '@/features/users/userSlice';
-import logo from '../../../public/assets/images/logos/logo.png';
+import logo from '../../../public/assets/images/logos/logo6.png';
 
 const links = [
   {
-    label: 'Inicio',
-    icon: <FaHome />,
-    size: 24,
+    label: 'inicio',
     route: '/',
-    show: '1',
   },
   {
-    label: 'Beneficios',
-    icon: <IoMdHappy />,
-    size: 24,
+    label: 'beneficios',
     route: '/beneficios',
-    show: '1',
   },
   {
-    label: 'Nosotros',
-    icon: <AiFillTool />,
-    size: 24,
-    route: '/nosotros',
-    show: '1',
-  },
-  {
-    label: 'Contacto',
-    icon: <FaEnvelope />,
-    size: 24,
+    label: 'contáctanos',
     route: '/#contact',
-    show: '1',
   },
 ];
 
@@ -89,8 +71,8 @@ export const Header = () => {
           {!showMenu ? <FaBars size={20} /> : <FaTimes size={20} />}
         </button>
         <Link href="/">
-          <div className="flex items-center">
-            <Image src={logo} alt="Logo" className="w-full h-auto" />
+          <div className="relative w-[150px] h-[60px]  sm:w-[200px] sm:h-[80px] md:w-[270px] md:h-[104px] ">
+            <Image src={logo} alt="Logo" height={110} width={290} />
           </div>
         </Link>
 
@@ -98,19 +80,19 @@ export const Header = () => {
           {user.id ? (
             <div className="flex space-x-2 ">
               <button
-                className="w-8 h-8 md:w-[40px] md:h-[40px] lg:w-[60px] lg:h-[60px]  md:ml-12 bg-myGreen  hover:bg-myBlue rounded-full flex justify-center items-center text-base md:text-xl"
+                className="w-10 h-10 md:w-[40px] md:h-[40px] lg:w-[60px] lg:h-[60px]  md:ml-12 bg-myGrayLight  hover:bg-myGrayDark text-myPurple rounded-full flex justify-center items-center text-3xl"
                 onClick={() => handleOpenModalProfile()}
               >
                 {user.name[0].toUpperCase()}
               </button>
             </div>
           ) : (
-            <div className="flex space-x-2 ">
+            <div>
               <button
-                className="hidden md:block btn btnSecond px-2"
+                className="hidden md:block headerLink"
                 onClick={() => handleLogin()}
               >
-                Ingresar
+                ingresar
               </button>
               <button className="md:hidden" onClick={() => handleLogin()}>
                 <FaUserAlt size={16} />
@@ -125,18 +107,8 @@ export const Header = () => {
           >
             {links.map((link) => {
               return (
-                <li
-                  className={`${
-                    link.show === '2' ? 'lg:hidden' : ''
-                  } headerLink`}
-                  key={link.label}
-                >
-                  <Link
-                    href={link.route}
-                    className="flex space-x-2 items-center"
-                  >
-                    {link.icon} <span>{link.label}</span>
-                  </Link>
+                <li className="headerLink" key={link.label}>
+                  <Link href={link.route}>{link.label}</Link>
                 </li>
               );
             })}
@@ -144,7 +116,7 @@ export const Header = () => {
         </nav>
       </header>
       {showModalPerfil && (
-        <div className="absolute bg-myGreen w-36 h-20 top-[var(--header-height)] right-10 p-4 text-white flex flex-col z-50">
+        <div className="absolute bg-myPurple w-36 h-20 top-[var(--header-height)] right-10 p-4 text-myGrayLight flex flex-col z-50">
           <button
             className="text-left font-semibold cursor-pointer hover:text-myBlue"
             onClick={handleProfile}
