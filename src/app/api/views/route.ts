@@ -37,7 +37,6 @@ export async function PUT(req: Request) {
     userWithVizes?.tableauVizes.map((relation) => relation.tableaViz.name) ||
     [];
 
-  console.log('userWithVizes', userWithVizes);
   return NextResponse.json({ status: 200, vizUrls, vizName });
 }
 
