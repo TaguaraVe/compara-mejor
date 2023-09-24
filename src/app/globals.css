@@ -7,7 +7,7 @@
     --foreground-rgb: 0, 0, 0;
     --background-start-rgb: 214, 219, 220;
     --background-end-rgb: 255, 255, 255;
-    --header-height: 85px;
+    --header-height: 110px;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -29,21 +29,17 @@
   }
 
   header {
-    @apply fixed top-0 z-10 flex w-full h-[var(--header-height)] items-center justify-between px-4 py-4 transition-all lg:px-6 xl:px-10 bg-white lg:py-6 text-black duration-200;
+    @apply fixed top-0 z-10 flex w-full h-[var(--header-height)] items-center justify-between px-4 py-4 transition-all lg:px-6 xl:px-10 bg-myPurple lg:py-6 text-myGrayLight text-2xl duration-200;
   }
 
   footer {
-    @apply relative w-full items-center justify-between px-4 py-4 transition-all lg:px-10 lg:py-6 bg-white border-t-2;
+    @apply relative w-full items-center justify-between px-4 py-4 transition-all lg:px-10 lg:py-6 bg-myGrayDark  border-t-2;
   }
 }
 
 @layer components {
   .headerLink {
-    @apply max-w-xs mx-auto md:ml-7 p-2 cursor-pointer transition duration-300 hover:bg-[var(--saintBlueLight)] md:text-lg font-medium hover:text-black hover:rounded-lg;
-  }
-
-  .bannerButton {
-    @apply flex items-center gap-x-2 rounded px-5 py-1.5 text-sm font-semibold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl;
+    @apply max-w-xs mx-auto md:ml-7 p-2 cursor-pointer transition duration-300 text-2xl hover:text-myPurple;
   }
 
   .menuDesktop {
@@ -51,7 +47,7 @@
   }
 
   .menuMobile {
-    @apply fixed left-0 w-2/3 top-[var(--header-height)]  min-h-[calc(100vh-var(--header-height))] px-8 pt-8 space-y-4 bg-white lg:bg-[var(--saintBlueLigh)] transform text-left transition duration-300;
+    @apply fixed left-0 w-2/3 top-[var(--header-height)]  min-h-[calc(100vh-var(--header-height))] px-8 pt-8 space-y-4 bg-myGrayDark lg:bg-myPurple transform text-left transition duration-300;
   }
   .title {
     @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl;

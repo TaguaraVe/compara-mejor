@@ -4,7 +4,7 @@ import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import Link from 'next/link';
 
-import logo from '../../../public/assets/images/logos/logo.png';
+import logo from '../../../public/assets/images/logos/logo6.png';
 
 export const Footer = ({ id = 'footer' }) => {
   return (
