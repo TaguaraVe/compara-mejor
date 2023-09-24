@@ -70,13 +70,13 @@ const Tableau = () => {
   return (
     <section>
       <div className="flex flex-col justify-center items-center p-2">
-        <h1 className="text-myGreen text-2xl ">Hola {user.name}</h1>
+        {/* <h1 className="text-myGreen text-2xl ">Hola {user.name}</h1> */}
         <div className="flex justify-center space-x-4">
           {vizName.map((name, index) => {
             return (
               <button
                 key={index}
-                className="text-2xl px-4 py-2 bg-slate-100"
+                className="text-2xl px-4 py-2 bg-slate-100 hover:bg-slate-200"
                 onClick={() => setCurrent(index)}
               >
                 {name}
