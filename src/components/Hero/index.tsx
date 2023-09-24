@@ -6,7 +6,6 @@ import { IoArrowForward, IoArrowBack } from 'react-icons/io5';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 import { sliderData } from './sliderData';
-import { Tahoma, mySubtitle, myTitle } from '@/app/layout';
 
 export const HeroSliderSection = () => {
   const slideshow = useRef(null);
@@ -75,13 +74,11 @@ export const HeroSliderSection = () => {
             >
               <div className=" absolute top-1/2 translate-x-1/2 right-1/2 -translate-y-1/2 flex flex-col justify-center items-center  bg-slate-100 bg-opacity-70 z-10 w-2/5 h-20 md:h-44 p-8  rounded-2xl mx-auto  text-clamped leading-none text-[var(--darkClr)] ">
                 <h1
-                  className={`mx-auto text-center text-2xl md:text-5xl text-black mb-4 ${mySubtitle.className}`}
+                  className={`mx-auto text-center text-2xl md:text-5xl text-black mb-4 `}
                 >
                   {slide.subtitle}
                 </h1>
-                <h2 className={`mx-auto text-center ${myTitle.className}`}>
-                  {slide.title}
-                </h2>
+                <h2 className={`mx-auto text-center`}>{slide.title}</h2>
               </div>
               <div className="relative w-full h-full">
                 <Image

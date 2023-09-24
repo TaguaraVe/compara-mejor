@@ -10,10 +10,7 @@ import { CustomInput, CustomTextarea } from '@/components/common/CustomInput';
 
 type FormData = {
   user_name: string;
-  phone: string;
   email: string;
-  company: string;
-  location: string;
   message: string;
 };
 
@@ -51,8 +48,6 @@ export const ContactForm = () => {
     defaultValues: {
       user_name: '',
       email: '',
-      phone: '',
-      company: '',
       message: '',
     },
     resolver: yupResolver(schema),
@@ -77,7 +72,7 @@ export const ContactForm = () => {
           placeholder="ingrese su Email"
         />
 
-        <CustomInput
+        {/* <CustomInput
           register={register}
           error={errors?.phone}
           label="Teléfono"
@@ -91,7 +86,7 @@ export const ContactForm = () => {
           label="Nombre de la Empresa"
           name="company"
           placeholder="Ingrese el nombre de la empresa"
-        />
+        /> */}
       </div>
 
       <CustomTextarea

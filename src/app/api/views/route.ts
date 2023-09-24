@@ -21,6 +21,7 @@ export async function PUT(req: Request) {
         select: {
           tableaViz: {
             select: {
+              name: true,
               url: true,
             },
           },
@@ -32,7 +33,12 @@ export async function PUT(req: Request) {
   const vizUrls =
     userWithVizes?.tableauVizes.map((relation) => relation.tableaViz.url) || [];
 
-  return NextResponse.json({ status: 200, vizUrls });
+  const vizName =
+    userWithVizes?.tableauVizes.map((relation) => relation.tableaViz.name) ||
+    [];
+
+  console.log('userWithVizes', userWithVizes);
+  return NextResponse.json({ status: 200, vizUrls, vizName });
 }
 
 export async function POST(req: Request) {
