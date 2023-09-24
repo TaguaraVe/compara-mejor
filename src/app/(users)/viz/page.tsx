@@ -23,6 +23,7 @@ export async function getTableaToken() {
 const Tableau = () => {
   const [current, setCurrent] = useState(0);
   const [vista, setVista] = useState([]);
+  const [vizName, setVizName] = useState([]);
   const [token, setToken] = useState(null);
 
   const apiUrl = 'https://tableau-token-generator.vercel.app/token';
@@ -31,7 +32,6 @@ const Tableau = () => {
       const respuesta = await fetch(apiUrl);
       const data = await respuesta.json();
       setToken(data.token);
-      console.log('joder', token);
     } catch (error) {
       console.error('Hubo un error al obtener los datos:', error);
     }
@@ -43,7 +43,10 @@ const Tableau = () => {
     const vartoken = await getTableaToken();
     setToken(vartoken.token);
     const views = await getAllUserVizById(id);
-    if (views.status === 200) setVista(views.vizUrls);
+    if (views.status === 200) {
+      setVista(views.vizUrls);
+      setVizName(views.vizName);
+    }
   };
 
   useEffect(() => {
@@ -62,15 +65,25 @@ const Tableau = () => {
     current + 1 > vista.length ? setCurrent(0) : setCurrent(current + 1);
   };
 
-  console.log('el Token es ', token);
+  console.log('Vistas = ', vista);
 
   return (
     <section>
       <div className="flex flex-col justify-center items-center p-2">
         <h1 className="text-myGreen text-2xl ">Hola {user.name}</h1>
-        <button className="text-2xl px-4 py-2 bg-slate-100" onClick={nextViz}>
-          Proxima vista
-        </button>
+        <div className="flex justify-center space-x-4">
+          {vizName.map((name, index) => {
+            return (
+              <button
+                key={index}
+                className="text-2xl px-4 py-2 bg-slate-100"
+                onClick={() => setCurrent(index)}
+              >
+                {name}
+              </button>
+            );
+          })}
+        </div>
       </div>
       <div className="w-[90vw] h-screen bg-slate-100 mx-auto  ">
         <tableau-viz
