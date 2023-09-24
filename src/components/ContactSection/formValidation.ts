@@ -2,8 +2,6 @@ import * as Yup from 'yup';
 
 export const Schema = Yup.object().shape({
   user_name: Yup.string().required('Requerido'),
-  company: Yup.string().required('Requerido'),
-  phone: Yup.string().required('Requerido'),
   email: Yup.string()
     .email('Email invalido')
     .typeError('Email invalido')

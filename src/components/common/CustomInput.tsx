@@ -51,7 +51,7 @@ export const CustomInput: React.FC<CustomInputProps> = ({
         {...register(name)}
         placeholder={placeholder}
         type={type}
-        className="focus:border-b-6 border-b-4 border-myGrayDark bg-white py-2  outline-0 focus:border-myPurple px-2"
+        className="focus:border-b-6 border-b-4 text-myPurple border-myGrayDark bg-white py-2  outline-0 focus:border-myPurple px-2"
       />
       {error != null && <p className="text-sm text-error">{error.message}</p>}
     </div>

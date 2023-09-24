@@ -11,13 +11,13 @@ export const Hero = () => {
         viewport={{ once: true }}
         className="text-8xl w-1/2 font-bold text-center text-myWhite "
       >
-        Acelera tu análisis de
+        acelera tu análisis de
         <span className="text-myGrayDark">
-          <br /> Datos
+          <br /> datos
         </span>
       </motion.h1>
       <button className="py-4 px-12 mt-12 border-2 border-myWhite text-myWhite text-2xl">
-        Consulta con nosotros
+        consulta con nosotros
       </button>
     </section>
   );
