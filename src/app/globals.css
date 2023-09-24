@@ -50,6 +50,6 @@
     @apply fixed left-0 w-2/3 top-[var(--header-height)]  min-h-[calc(100vh-var(--header-height))] px-8 pt-8 space-y-4 bg-myGrayDark lg:bg-myPurple transform text-left transition duration-300;
   }
   .title {
-    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl;
+    @apply text-3xl tracking-widest text-myPurple sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl;
   }
 }

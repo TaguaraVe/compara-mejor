@@ -8,7 +8,7 @@ import Image3 from '../../../public/assets/images/icons/store.png';
 
 export const Services = () => {
   return (
-    <section className="mt-12 text-myGrayDark">
+    <section className="my-12 text-myPurple">
       <div className="max-w-7xl p-8 mx-auto">
         <h2 className="text-5xl text-myPurple my-12">QUE HACEMOS</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

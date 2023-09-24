@@ -6,7 +6,7 @@ export const ContactSection = ({ id = 'location', title = 'Ubicación' }) => {
   return (
     <section
       className={
-        'w-full bg-[var(--lightClr)] py-20 px-8 flex justify-center items-center '
+        'w-full bg-myPurple py-20 px-8 flex justify-center items-center '
       }
       id={id}
     >

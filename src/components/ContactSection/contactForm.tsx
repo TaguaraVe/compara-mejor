@@ -60,7 +60,7 @@ export const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 text-myWhite">
         <CustomInput
           register={register}
           error={errors?.user_name}
@@ -101,7 +101,7 @@ export const ContactForm = () => {
         placeholder="ingrese su mensaje o comentario"
       />
       <div className="mx-auto text-center">
-        <button className="btn bg-ctaInv rounded-lg px-12 py-1 text-white hover:bg-opacity-80">
+        <button className="w-1/2 text-xl mb-4 bg-myPurple hover:bg-myGrayLight border-2 border-myPurple py-2 px-10 mx-auto text-myWhite hover:text-myPurple">
           Enviar
         </button>
       </div>
