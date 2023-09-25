@@ -21,15 +21,20 @@ export async function PUT(req: Request) {
         select: {
           tableaViz: {
             select: {
-              name: true,
               url: true,
+              name: true,
+              order_name: true,
             },
+          },
+        },
+        orderBy: {
+          tableaViz: {
+            order_name: 'asc', // puedes usar 'desc' para orden descendente
           },
         },
       },
     },
   });
-
   const vizUrls =
     userWithVizes?.tableauVizes.map((relation) => relation.tableaViz.url) || [];
 
