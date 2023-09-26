@@ -1,14 +1,13 @@
 const About = () => {
   return (
-    <section>
-      <h1 className={` pt-12 text-center text-6xl text-myGreen mb-12 `}>
-        QUIENES SOMOS
-      </h1>
+    <section className="lowercase  text-myPurple ">
+      <h1 className="title font-semibold text-center my-12">QUIENES SOMOS</h1>
 
       <div className="flex flex-col max-w-6xl mx-auto text-xl ">
         <p className="mb-4">
-          En Compara Mejoir somo un grupo joven con amplia experiencia en el en
-          modelado de datos, analítica descriptiva y predictiva.
+          En <span className="font-semibold  text-2xl"> Compara Mejor </span>
+          somo un grupo joven con amplia experiencia en el en modelado de datos,
+          analítica descriptiva y predictiva.
         </p>
         <p className="mb-4">
           Brindamos consultoría de alto nivel a nuestros clientes. Somos un
@@ -44,7 +43,9 @@ const About = () => {
       <div className="bg-about-pattern bg-opacity-80 bg-cover bg-center bg-no-repeat bg-blend-overlay bg-myBlue my-12  ">
         <div className="flex max-w-6xl mx-auto gap-12 text-2xl">
           <div className="w-full min-h-[300px] p-8">
-            <h3 className={`text-5xl my-4 text-center `}>Misión</h3>
+            <h3 className={`text-5xl my-4 font-semibold text-center`}>
+              Misión
+            </h3>
             <p>
               Mediante plataformas tecnológicas ágiles ayudamos a las empresas
               en la transformación digital para tomar decisiones basadas en
@@ -52,7 +53,9 @@ const About = () => {
             </p>
           </div>
           <div className="w-full min-h-[300px] p-8 rounded-lg">
-            <h3 className={`text-5xl my-4 text-center`}>Visión</h3>
+            <h3 className={`text-5xl my-4 font-semibold text-center`}>
+              Visión
+            </h3>
             <p>
               Ser un aliado estratégico para acelerar la implementación de la
               transformación digital de cada uno de nuestros clientes.

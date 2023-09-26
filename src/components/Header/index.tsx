@@ -19,6 +19,10 @@ const links = [
     route: '/beneficios',
   },
   {
+    label: 'nosotros',
+    route: '/nosotros',
+  },
+  {
     label: 'contáctanos',
     route: '/#contact',
   },
