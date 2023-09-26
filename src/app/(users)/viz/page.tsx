@@ -98,6 +98,16 @@ const Tableau = () => {
         type="module"
         src="https://prod-useast-a.online.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"
       ></Script>
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-RT8CNZEZRE" />
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+ 
+          gtag('config', 'G-RT8CNZEZRE');
+        `}
+      </Script>
     </section>
   );
 };
