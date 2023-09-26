@@ -1,5 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 export const Hero = () => {
   return (
     <section className=" relative bg-myPurple h-[550px] flex-col flex justify-center items-center">
@@ -16,9 +17,12 @@ export const Hero = () => {
           <br /> datos
         </span>
       </motion.h1>
-      <button className="py-2 px-4 md:py-4 md:px-12 max-w-sm   mx-auto  mt-12 border-2 border-myWhite text-myWhite  md:text-2xl">
-        consulta con nosotros
-      </button>
+
+      <Link href="/#contact">
+        <button className="py-2 px-4 md:py-4 md:px-12 max-w-sm mx-auto mt-12 border-2 border-myWhite text-myWhite  md:text-2xl hover:text-myPurple hover:border-myPurple hover:bg-myWhite ">
+          consulta con nosotros
+        </button>
+      </Link>
     </section>
   );
 };
