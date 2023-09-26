@@ -55,7 +55,7 @@ export const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 text-myWhite">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 text-myWhite lowercase">
         <CustomInput
           register={register}
           error={errors?.user_name}
@@ -71,22 +71,6 @@ export const ContactForm = () => {
           name="email"
           placeholder="ingrese su Email"
         />
-
-        {/* <CustomInput
-          register={register}
-          error={errors?.phone}
-          label="Teléfono"
-          name="phone"
-          placeholder="ingrese su teléfono incluir codigo país"
-        />
-
-        <CustomInput
-          register={register}
-          error={errors?.company}
-          label="Nombre de la Empresa"
-          name="company"
-          placeholder="Ingrese el nombre de la empresa"
-        /> */}
       </div>
 
       <CustomTextarea
@@ -96,7 +80,7 @@ export const ContactForm = () => {
         placeholder="ingrese su mensaje o comentario"
       />
       <div className="mx-auto text-center">
-        <button className="w-1/2 text-xl mb-4 bg-myPurple hover:bg-myGrayLight border-2 border-myPurple py-2 px-10 mx-auto text-myWhite hover:text-myPurple">
+        <button className="w-1/2 text-xl mb-4 bg-myPurple hover:bg-myGrayLight border-2 border-myPurple py-2 px-10 mx-auto text-myWhite hover:text-myPurple lowercase">
           Enviar
         </button>
       </div>
