@@ -3,6 +3,7 @@ import { Montserrat } from 'next/font/google';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import ReduxProvider from '@/store/provider';
+import Script from 'next/script';
 
 import './globals.css';
 
@@ -31,6 +32,20 @@ export default function RootLayout({
           </div>
           <Footer />
         </ReduxProvider>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-RT8CNZEZRE"
+        />
+        <Script
+          id="GoogleAnalitic"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+                     function gtag(){dataLayer.push(arguments);}
+                              gtag('js', new Date());
+                              gtag('config', 'G-RT8CNZEZRE');`,
+          }}
+        />
       </body>
     </html>
   );
