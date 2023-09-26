@@ -13,7 +13,7 @@ export async function POST(req: Request) {
       return NextResponse.json({
         status: 401,
         success: false,
-        msg: 'Error --> Email invalido',
+        msg: 'Email invalido',
       });
     }
 
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
       return NextResponse.json({
         status: 401,
         success: false,
-        msg: 'Error --> Clave invalida',
+        msg: 'Clave invalida',
       });
     }
 
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
       return NextResponse.json({
         status: 400,
         success: false,
-        msg: 'Error --> User not Found',
+        msg: 'User no existe',
       });
     }
 
@@ -45,7 +45,7 @@ export async function POST(req: Request) {
       return NextResponse.json({
         status: 400,
         success: false,
-        msg: 'Error --> wrong credentials',
+        msg: 'Clave invalida',
       });
     }
 

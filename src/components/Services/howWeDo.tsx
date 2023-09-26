@@ -49,7 +49,7 @@ export const HowWeDoCard = () => {
             Lo que no se mide, <br /> no se mejora.
           </p>
         </div>
-        <div className="pl-16">
+        <div className="md:pl-16">
           {howWeDoData.map((data, index) => {
             return (
               <motion.div

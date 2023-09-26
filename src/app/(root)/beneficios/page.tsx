@@ -1,12 +1,11 @@
 const Beneficts = () => {
   return (
-    <section className="">
-      <h1 className="pt-12 text-center text-6xl text-myGreen mb-12">
-        Beneficios
-      </h1>
+    <section className="text-myPurple lowercase">
+      <h1 className="title font-semibold text-center my-12">Beneficios</h1>
+
       <div className="px-4 grid gap-8 max-w-6xl mx-auto grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-lg ">
-        <div className="w-full min-h-[300px] p-8 bg-white rounded-lg">
-          <h3 className={`font-bold text-2xl my-4 text-center  text-myGreen`}>
+        <div className="w-full min-h-[300px] p-8 bg-myWhite rounded-lg">
+          <h3 className={`font-bold text-2xl my-4 text-center  text-myen`}>
             Mejora en toma de decisiones
           </h3>
           <p className="">

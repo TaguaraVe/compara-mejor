@@ -52,22 +52,18 @@ export default function Login() {
   });
 
   return (
-    <section className="w-full h-[calc(100vh-var(--header-height))] bg-myPurple md:p-4">
+    <section className="w-full min-h-[calc(100vh-var(--header-height))] bg-myPurple md:p-4">
       <div className="w-full h-full bg-login-pattern bg-contain bg-no-repeat bg-right-top">
         <div className="max-w-5xl mx-auto pt-12 px-2 flex justify-center lg:justify-start">
-          <article className="max-h-[600px] max-w-[420px] w-full flex flex-col items-center bg-myGrayLight rounded-xl px-2">
+          <article className="max-h-[600px] max-w-[420px] w-full flex flex-col items-center bg-myGrayLight rounded-xl px-2 mb-12">
             <div className={'my-4'}>
               <div className="w-[160px] flex justify-center items-center mx-auto">
                 <Image src={logo} alt="Compara Mejor logo" />
               </div>
             </div>
-            <div className="h-12 w-full px-10 flex justify-center items-center">
+            <div className="h-8 w-full px-10 flex justify-center items-center">
               {loginError.isError && (
-                <p
-                  className={
-                    'bg-rose-100 text-[var(--ctaClr)] p-2 text-center w-full h-full'
-                  }
-                >
+                <p className={'text-error font-semibold text-lg text-center'}>
                   {loginError.msg}
                 </p>
               )}
