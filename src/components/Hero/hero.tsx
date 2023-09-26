@@ -9,14 +9,14 @@ export const Hero = () => {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
-        className="text-4xl md:text-6xl w-1/2 font-bold text-center text-myWhite "
+        className="text-4xl md:text-6xl lg:text-8xl w-1/2 font-bold text-center text-myWhite "
       >
         acelera tu análisis de
         <span className="text-myGrayDark">
           <br /> datos
         </span>
       </motion.h1>
-      <button className="py-2 px-4 md:py-4 md:px-12 max-w-xs mx-auto  mt-12 border-2 border-myWhite text-myWhite text-lg md:text-2xl">
+      <button className="py-2 px-4 md:py-4 md:px-12 max-w-sm   mx-auto  mt-12 border-2 border-myWhite text-myWhite  md:text-2xl">
         consulta con nosotros
       </button>
     </section>
