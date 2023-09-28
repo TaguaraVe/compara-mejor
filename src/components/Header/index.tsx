@@ -58,7 +58,7 @@ export const Header = () => {
 
   const handleProfile = () => {
     setShowModalPerfil(false);
-    router.push('/profile');
+    router.push('/updatepwd');
   };
 
   useEffect(() => {
@@ -120,12 +120,12 @@ export const Header = () => {
         </nav>
       </header>
       {showModalPerfil && (
-        <div className="absolute bg-myPurple w-36 h-20 top-[var(--header-height)] right-10 p-4 text-myGrayLight flex flex-col z-50">
+        <div className="absolute bg-myPurple w-36 h-20 top-[var(--header-height)] right-10 p-4 text-myWhite flex flex-col z-50">
           <button
             className="text-left font-semibold cursor-pointer hover:text-myBlue"
             onClick={handleProfile}
           >
-            Perfil
+            Cambiar Clave
           </button>
           <button
             className="text-left cursor-pointer hover:text-myBlue"
