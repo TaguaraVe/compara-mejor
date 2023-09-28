@@ -9,7 +9,7 @@ export const getAllUserVizById = async (id: string) => {
     });
 
     if (!response.ok) {
-      throw new Error('Network response was not ok', response);
+      throw new Error('Network response was not ok');
     }
     return await response.json();
   } catch (error) {

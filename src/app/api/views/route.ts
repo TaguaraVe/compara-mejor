@@ -37,16 +37,12 @@ export async function PUT(req: Request) {
 
   const vizUrls =
     userWithVizs?.vizGroup?.vizs.map((v) => {
-      return {
-        url: v.tableauViz.url,
-      };
+      return v.tableauViz.url;
     }) || [];
 
   const vizName =
     userWithVizs?.vizGroup?.vizs.map((v) => {
-      return {
-        name: v.tableauViz.name,
-      };
+      return v.tableauViz.name;
     }) || [];
 
   return NextResponse.json({ status: 200, vizUrls, vizName });
