@@ -9,7 +9,7 @@ const vizList = [
 
 let vizLen = vizList.length,
   vizCount = 0;
-let token = null;
+let token: string | null = null;
 
 async function getToken() {
   const apiUrl = 'https://tableau-token-generator.vercel.app/token';
@@ -20,7 +20,6 @@ async function getToken() {
       throw new Error('Error en la respuesta de la API');
     }
     const data = await response.json();
-    console.log('Datos de la API:', data.token);
 
     function handleFirstInteractive(e) {
       console.log(`Viz loaded: ${viz.src}`);
@@ -49,9 +48,7 @@ async function getToken() {
     );
     viz.src = vizList[0];
     viz.id = '6b94cee6-0733-456a-af57-e84176d41180';
-    console.log('first antese de asigna a viz.token', data.token);
     viz.token = data.token;
-    console.log('despues viz.token', viz.token);
 
     // Attach event handlers to the "previous" and "next" button clicks.
     document.getElementById('previous').onclick = () => loadViz(-1);
@@ -63,7 +60,6 @@ async function getToken() {
 getToken();
 setInterval(() => {
   getToken();
-  console.log(' set interva', token);
 }, 1 * 60 * 1000);
 
 export async function getTableaToken() {

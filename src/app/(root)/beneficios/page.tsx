@@ -25,7 +25,7 @@ const Beneficts = () => {
           </p>
         </div>
         <div className="w-full min-h-[300px] p-8 bg-myWhite rounded-lg">
-          <h3 className={`font-bold text-2xl my-4 text-center  text-myGreen `}>
+          <h3 className={`font-bold text-2xl my-4 text-center`}>
             Oportunidades de crecimiento
           </h3>
           <p>

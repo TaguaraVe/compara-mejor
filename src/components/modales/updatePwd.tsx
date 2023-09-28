@@ -1,7 +1,5 @@
 'use client';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-
 import { useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -18,10 +16,13 @@ interface FormData {
   confirmPwd: string;
 }
 
-export default function UpdateUser() {
+interface UpdatePwdProps {
+  closeModal: () => void;
+}
+
+export const UpdatePwd = ({ closeModal }: UpdatePwdProps) => {
   const [loginError, setLoginError] = useState({ isError: false, msg: '' });
   const user = useSelector(selectCurrentUser);
-  const router = useRouter();
 
   const onSubmit = async (values: FormData) => {
     setLoginError({ isError: false, msg: '' });
@@ -33,13 +34,12 @@ export default function UpdateUser() {
     if (data.status !== 200) {
       setLoginError({ isError: true, msg: data.msg });
     } else {
-      reset();
-      router.replace('/viz');
+      closeModal();
     }
   };
 
   const handleCancel = () => {
-    router.replace('/');
+    closeModal();
   };
 
   const {
@@ -101,4 +101,4 @@ export default function UpdateUser() {
       </article>
     </section>
   );
-}
+};

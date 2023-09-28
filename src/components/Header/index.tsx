@@ -8,6 +8,7 @@ import { FaBars, FaTimes, FaUserAlt } from 'react-icons/fa';
 
 import { removeUser, selectCurrentUser } from '@/features/users/userSlice';
 import logo from '../../../public/assets/images/logos/logo6.png';
+import { UpdatePwd } from '../modales/updatePwd';
 
 const links = [
   {
@@ -31,6 +32,7 @@ const links = [
 export const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showModalPerfil, setShowModalPerfil] = useState(false);
+  const [showModalUpdatePwd, setShowModalUpdatePwd] = useState(false);
   const user = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
 
@@ -56,9 +58,13 @@ export const Header = () => {
     setShowModalPerfil(true);
   };
 
+  const handleCloseModalUpdatePwd = () => {
+    setShowModalUpdatePwd(false);
+  };
+
   const handleProfile = () => {
     setShowModalPerfil(false);
-    router.push('/updatepwd');
+    setShowModalUpdatePwd(true);
   };
 
   useEffect(() => {
@@ -120,7 +126,7 @@ export const Header = () => {
         </nav>
       </header>
       {showModalPerfil && (
-        <div className="absolute bg-myPurple w-36 h-20 top-[var(--header-height)] right-10 p-4 text-myWhite flex flex-col z-50">
+        <div className="absolute bg-myPurple w-44 h-20 top-[var(--header-height)] right-10 p-4 text-myWhite flex flex-col z-50">
           <button
             className="text-left font-semibold cursor-pointer hover:text-myBlue"
             onClick={handleProfile}
@@ -134,6 +140,9 @@ export const Header = () => {
             Cerrar Sesión
           </button>
         </div>
+      )}
+      {showModalUpdatePwd && (
+        <UpdatePwd closeModal={handleCloseModalUpdatePwd} />
       )}
     </>
   );
