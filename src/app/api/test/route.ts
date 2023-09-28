@@ -5,24 +5,23 @@ export async function POST(req: Request) {
   const body = await req.json();
   const { id } = body;
 
-  const userWithVizes = await prismadb.user.findUnique({
+  const userWithVizs = await prismadb.user.findUnique({
     where: {
       id,
     },
-    include: {
-      tableauVizes: {
+    select: {
+      vizGroup: {
         select: {
-          tableaViz: {
+          vizs: {
             select: {
-              url: true,
-              name: true,
-              order_name: true,
+              tableauViz: {
+                select: {
+                  name: true,
+                  url: true,
+                  order_name: true,
+                },
+              },
             },
-          },
-        },
-        orderBy: {
-          tableaViz: {
-            order_name: 'asc', // puedes usar 'desc' para orden descendente
           },
         },
       },
@@ -31,11 +30,13 @@ export async function POST(req: Request) {
 
   // Extraer la data de las visualizaciones de Tableau asociadas al usuario
   const vizData =
-    userWithVizes?.tableauVizes.map((relation) => ({
-      url: relation.tableaViz.url,
-      name: relation.tableaViz.name,
-      order: relation.tableaViz.order_name,
-    })) || [];
+    userWithVizs?.vizGroup?.vizs.map((v) => {
+      return {
+        order_name: v.tableauViz.order_name,
+        name: v.tableauViz.name,
+        url: v.tableauViz.url,
+      };
+    }) || [];
 
   return NextResponse.json({ status: 200, vizData });
 }

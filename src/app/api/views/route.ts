@@ -12,35 +12,42 @@ export async function PUT(req: Request) {
   const body = await req.json();
   const { id } = body;
 
-  const userWithVizes = await prismadb.user.findUnique({
+  const userWithVizs = await prismadb.user.findUnique({
     where: {
       id,
     },
-    include: {
-      tableauVizes: {
+    select: {
+      vizGroup: {
         select: {
-          tableaViz: {
+          vizs: {
             select: {
-              url: true,
-              name: true,
-              order_name: true,
+              tableauViz: {
+                select: {
+                  name: true,
+                  url: true,
+                  order_name: true,
+                },
+              },
             },
-          },
-        },
-        orderBy: {
-          tableaViz: {
-            order_name: 'asc', // puedes usar 'desc' para orden descendente
           },
         },
       },
     },
   });
+
   const vizUrls =
-    userWithVizes?.tableauVizes.map((relation) => relation.tableaViz.url) || [];
+    userWithVizs?.vizGroup?.vizs.map((v) => {
+      return {
+        url: v.tableauViz.url,
+      };
+    }) || [];
 
   const vizName =
-    userWithVizes?.tableauVizes.map((relation) => relation.tableaViz.name) ||
-    [];
+    userWithVizs?.vizGroup?.vizs.map((v) => {
+      return {
+        name: v.tableauViz.name,
+      };
+    }) || [];
 
   return NextResponse.json({ status: 200, vizUrls, vizName });
 }
