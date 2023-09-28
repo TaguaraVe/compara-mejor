@@ -53,6 +53,7 @@ export async function POST(req: Request) {
       createdAd: newUser.createdAt,
       uodateAt: newUser.updatedAt,
       user_role: newUser.user_role,
+      groupName: newUser.groupName,
     };
 
     return NextResponse.json({ status: 200, currentUser });
