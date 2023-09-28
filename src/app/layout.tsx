@@ -23,10 +23,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${montserrat.className} min-h-screen`}>
+      <body className={`${montserrat.className}`}>
         <ReduxProvider>
           <Header />
-          <div className="pt-[var(--header-height)] min-h-[calc(100vh-(var(--header-height)))]">
+          <div className="pt-[var(--header-height)] min-h-[calc(100vh-(var(--header-height)))] bg-myWhite">
             {children}
           </div>
           <Footer />
