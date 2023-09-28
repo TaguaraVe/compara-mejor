@@ -12,7 +12,6 @@ export default function TestToken() {
       const data = await respuesta.json();
       setCont((pre) => pre + 1);
       setToken({ ...data, cont });
-      console.log('joder', token);
     } catch (error) {
       console.error('Hubo un error al obtener los datos:', error);
     }

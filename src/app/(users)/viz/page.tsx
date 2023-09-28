@@ -65,12 +65,10 @@ const Tableau = () => {
     current + 1 > vista.length ? setCurrent(0) : setCurrent(current + 1);
   };
 
-  console.log('Vistas = ', vista);
-
   return (
     <section className="bg-myWhite">
       <div className="flex flex-col justify-center items-center p-2">
-        <h1 className="text-myGreen text-2xl ">Hola {user.name}</h1>
+        <h1 className="text-myPurple  text-2xl ">Hola {user.name}</h1>
         <div className="flex justify-center space-x-4">
           {vizName.map((name, index) => {
             return (
