@@ -13,6 +13,11 @@ export async function POST(req: Request) {
       vizGroup: {
         select: {
           vizs: {
+            orderBy: {
+              tableauViz: {
+                order_name: 'asc',
+              },
+            },
             select: {
               tableauViz: {
                 select: {
@@ -27,7 +32,6 @@ export async function POST(req: Request) {
       },
     },
   });
-
   // Extraer la data de las visualizaciones de Tableau asociadas al usuario
   const vizData =
     userWithVizs?.vizGroup?.vizs.map((v) => {
