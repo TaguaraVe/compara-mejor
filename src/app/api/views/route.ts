@@ -20,6 +20,11 @@ export async function PUT(req: Request) {
       vizGroup: {
         select: {
           vizs: {
+            orderBy: {
+              tableauViz: {
+                order_name: 'asc',
+              },
+            },
             select: {
               tableauViz: {
                 select: {
