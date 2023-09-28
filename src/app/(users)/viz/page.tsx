@@ -68,15 +68,15 @@ const Tableau = () => {
   console.log('Vistas = ', vista);
 
   return (
-    <section>
+    <section className="bg-myWhite">
       <div className="flex flex-col justify-center items-center p-2">
-        {/* <h1 className="text-myGreen text-2xl ">Hola {user.name}</h1> */}
+        <h1 className="text-myGreen text-2xl ">Hola {user.name}</h1>
         <div className="flex justify-center space-x-4">
           {vizName.map((name, index) => {
             return (
               <button
                 key={index}
-                className="text-2xl px-4 py-2 bg-slate-100 hover:bg-slate-200"
+                className="text-2xl px-4 py-2 bg-myGrayLight hover:bg-myGrayDark text-myPurple "
                 onClick={() => setCurrent(index)}
               >
                 {name}
@@ -85,7 +85,7 @@ const Tableau = () => {
           })}
         </div>
       </div>
-      <div className="w-[90vw] h-screen bg-slate-100 mx-auto  ">
+      <div className="w-[90vw] min-h-screen bg-slate-100 mx-auto  ">
         <tableau-viz
           id="tableauViz"
           src={vista[current]}

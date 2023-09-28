@@ -1,6 +1,6 @@
 const Beneficts = () => {
   return (
-    <section className="text-myPurple lowercase">
+    <section className="text-myPurple lowercase bg-myWhite">
       <h1 className="title font-semibold text-center my-12">Beneficios</h1>
 
       <div className="px-4 grid gap-8 max-w-6xl mx-auto grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-lg ">
