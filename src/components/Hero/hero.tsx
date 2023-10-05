@@ -13,7 +13,7 @@ export const Hero = () => {
         className="text-4xl md:text-6xl lg:text-8xl w-1/2 font-bold text-center text-myWhite "
       >
         acelera tu análisis de
-        <span className="text-red-500">
+        <span className="text-myGrayLight">
           <br /> datos
         </span>
       </motion.h1>
