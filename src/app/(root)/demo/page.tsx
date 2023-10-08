@@ -1,10 +1,8 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import Script from 'next/script';
 
 import { getAllUserVizById } from '@/libs/getUserViz';
-import { selectCurrentUser } from '@/features/users/userSlice';
 
 export async function getTableaToken() {
   const apiUrl = 'https://tableau-token-generator.vercel.app/token';
@@ -37,8 +35,6 @@ const Tableau = () => {
     }
   };
 
-  const user = useSelector(selectCurrentUser);
-
   const getUserViz = async (id: string) => {
     const vartoken = await getTableaToken();
     setToken(vartoken.token);
@@ -56,10 +52,8 @@ const Tableau = () => {
   }, []);
 
   useEffect(() => {
-    if (user !== '') {
-      getUserViz(user.id);
-    }
-  }, [user]);
+    getUserViz('834139d2-4600-4e9d-b777-73779827110c');
+  }, []);
 
   const nextViz = () => {
     current + 1 > vista.length ? setCurrent(0) : setCurrent(current + 1);
@@ -68,7 +62,9 @@ const Tableau = () => {
   return (
     <section className="bg-myWhite">
       <div className="flex flex-col justify-center items-center p-2">
-        <h1 className="text-myPurple  text-2xl ">Hola {user.name}</h1>
+        <h1 className="text-myPurple  text-2xl ">
+          Vista de Demostración Mayoristas
+        </h1>
         <div className="flex justify-center space-x-4">
           {vizName.map((name, index) => {
             return (
