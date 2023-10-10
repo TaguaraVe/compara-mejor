@@ -74,7 +74,7 @@ const Tableau = () => {
             return (
               <button
                 key={index}
-                className="text-2xl px-4 py-2 bg-myGrayLight hover:bg-myGrayDark text-myPurple "
+                className="md:text-2xl md:px-4 md:py-2 md:bg-myGrayLight hover:underline md:hover:no-underline hover:underline-offset-4 hover:text-myGrayDark md:hover:bg-myGrayDark text-myPurple md:hover:text-myPurple"
                 onClick={() => setCurrent(index)}
               >
                 {name}
