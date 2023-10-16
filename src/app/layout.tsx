@@ -5,6 +5,7 @@ import { Footer } from '@/components/Footer';
 import ReduxProvider from '@/store/provider';
 
 import './globals.css';
+import Script from 'next/script';
 
 const montserrat = Montserrat({
   weight: ['200', '300', '400', '500', '600', '700', '800'],
@@ -32,6 +33,13 @@ export default function RootLayout({
           <Footer />
         </ReduxProvider>
       </body>
+      <Script
+        type="text/javascript"
+        id="hs-script-loader"
+        async
+        defer
+        src="//js-na1.hs-scripts.com/44039423.js"
+      />
     </html>
   );
 }

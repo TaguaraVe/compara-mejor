@@ -16,6 +16,10 @@ const links = [
     route: '/',
   },
   {
+    label: 'demo',
+    route: '/demo',
+  },
+  {
     label: 'beneficios',
     route: '/beneficios',
   },
