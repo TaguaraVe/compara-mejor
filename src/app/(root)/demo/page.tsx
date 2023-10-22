@@ -52,7 +52,7 @@ const Tableau = () => {
   }, []);
 
   useEffect(() => {
-    getUserViz('834139d2-4600-4e9d-b777-73779827110c');
+    getUserViz('ccb7011f-2282-4739-8817-72d2b61d880c');
   }, []);
 
   const nextViz = () => {
@@ -62,9 +62,7 @@ const Tableau = () => {
   return (
     <section className="bg-myWhite">
       <div className="flex flex-col justify-center items-center p-2">
-        <h1 className="text-myPurple  text-2xl ">
-          Vista de Demostración Mayoristas
-        </h1>
+        <h1 className="text-myPurple  text-2xl ">Vista de Categoria</h1>
         <div className="flex justify-center space-x-4">
           {vizName.map((name, index) => {
             return (
