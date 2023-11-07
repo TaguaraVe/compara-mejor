@@ -28,6 +28,10 @@ const links = [
     route: '/nosotros',
   },
   {
+    label: 'blog',
+    route: '/blog',
+  },
+  {
     label: 'contáctanos',
     route: '/#contact',
   },
