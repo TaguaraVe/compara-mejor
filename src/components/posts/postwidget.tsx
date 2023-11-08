@@ -8,7 +8,9 @@ const PostWidget = ({ posts }) => {
 
   return (
     <div className="mb-8 rounded-lg  bg-myPurple bg-opacity-40 p-8 pb-12 shadow-lg">
-      <h3 className="mb-8 border-b pb-4 text-xl font-semibold">Posts</h3>
+      <h3 className="mb-8 border-b pb-4 text-xl font-semibold">
+        Posts Recientes
+      </h3>
       {relatedPosts.map((post, index) => (
         <div key={post.id} className="mb-4 flex w-full items-center">
           <div className="w-16 flex-none">
