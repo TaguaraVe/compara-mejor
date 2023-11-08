@@ -1,16 +1,10 @@
-import { Montserrat } from 'next/font/google';
+import Script from 'next/script';
 
+import './globals.css';
+import { montserrat } from './ui/fonts';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import ReduxProvider from '@/store/provider';
-
-import './globals.css';
-import Script from 'next/script';
-
-const montserrat = Montserrat({
-  weight: ['200', '300', '400', '500', '600', '700', '800'],
-  subsets: ['latin'],
-});
 
 const metadata = {
   title: 'Compara Mejor',

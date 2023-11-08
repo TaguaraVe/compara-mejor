@@ -10,6 +10,9 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  images: {
+    domains: ['media.graphassets.com'],
+  },
 };
 
 module.exports = nextConfig;
