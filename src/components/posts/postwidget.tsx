@@ -1,8 +1,7 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getAllPosts, getSimilarPosts } from '@/libs/postsHygraph';
 
 const PostWidget = ({ posts }) => {
   const [relatedPosts, setRelatedPosts] = useState(posts);
@@ -22,9 +21,6 @@ const PostWidget = ({ posts }) => {
             />
           </div>
           <div className="ml-4 flex-grow">
-            <p className="font-xs text-gray-500">
-              {/* {moment(post.createdAt).format('MMM DD, YYYY')} */}
-            </p>
             <Link href={`/post/${post.slug}`} className="text-md" key={index}>
               {post.title}
             </Link>
