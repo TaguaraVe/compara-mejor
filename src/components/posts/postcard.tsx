@@ -23,7 +23,7 @@ const PostCard = ({ post }: PostProps) => (
     />
 
     <h2 className="mb-4 cursor-pointer text-center text-2xl font-semibold transition duration-700 hover:text-myPurple">
-      <Link href={'/post/${post.slug}'}>{post.title}</Link>
+      <Link href={`/blog/${post.slug}`}>{post.title}</Link>
     </h2>
 
     {/* <div className="mb-8 block w-full items-center justify-center text-center lg:flex">
@@ -63,11 +63,11 @@ const PostCard = ({ post }: PostProps) => (
     <p className="mb-8 text-lg  text-gray-700 line-clamp-4 ">{post.excerpt}</p>
 
     <div className="text-center">
-      {/* <Link href={`/post/${post.slug}`} passHref> */}
-      <span className="ease inline-block transform cursor-pointer rounded-full bg-myPurple  px-8 py-3 text-lg font-medium text-white transition duration-500 hover:-translate-y-1">
-        Leer articulo
-      </span>
-      {/* </Link> */}
+      <Link href={`/blog/${post.slug}`} passHref>
+        <span className="ease inline-block transform cursor-pointer rounded-full bg-myPurple  px-8 py-3 text-lg font-medium text-white transition duration-500 hover:-translate-y-1">
+          Leer articulo
+        </span>
+      </Link>
     </div>
   </div>
 );

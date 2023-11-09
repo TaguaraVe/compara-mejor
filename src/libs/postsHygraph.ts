@@ -69,44 +69,41 @@ export const getSimilarPosts = async () => {
   return posts;
 };
 
-/*
-export const getPostDetails = async (slug) => {
-  const query = gql`
-    query GetPostDetails($slug: String!) {
-      post(where: { slug: $slug }) {
-        title
-        excerpt
-        featuredImage {
-          url
-        }
-        author {
-          id
-          name
-          bio
-          photo {
-            url
+export const getPostDetails = async (slug: string) => {
+  const QUERY = gql`
+    {
+     post(where: {slug: "${slug}"}) {
+       id
+       title
+       slug
+       excerpt
+       createdAt
+       content {
+         raw
+       }
+       image {
+         url
+       }
+       author { 
+         name
+         id
+         picture {
+           url
           }
         }
-        createdAt
-        slug
-        id
-        content {
-          raw
-        }
         categories {
-          id
-          name
-          slug
+          categoryName
         }
       }
     }
   `;
+  const { post } = await hygraph.request(QUERY, { slug });
 
-  const result = await request(graphqlAPI, query, { slug });
-
-  return result.post;
+  return post;
 };
 
+/*
+  
 export const getAdjacentPosts = async (createdAt, slug) => {
   const query = gql`
     query GetAdjacentPosts($createdAt: DateTime!, $slug: String!) {
