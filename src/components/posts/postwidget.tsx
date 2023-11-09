@@ -23,7 +23,7 @@ const PostWidget = ({ posts }) => {
             />
           </div>
           <div className="ml-4 flex-grow">
-            <Link href={`/post/${post.slug}`} className="text-md" key={index}>
+            <Link href={`/blog/${post.slug}`} className="text-md" key={index}>
               {post.title}
             </Link>
           </div>
