@@ -11,7 +11,7 @@ interface Props {
 const PostDetails = async ({ params }: Props) => {
   const { slug } = params;
   const post = await getPostDetails(slug);
-  console.log('Post ==> ', post);
+
   return (
     <div className="col-span-1 grid grid-cols-1 gap-4 lg:col-span-9 lg:grid-cols-1 bg-myPurple bg-opacity-30">
       <div className="mb-8 rounded-lg bg-white pb-12 shadow-lg lg:p-8">
