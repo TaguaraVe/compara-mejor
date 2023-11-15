@@ -5,6 +5,7 @@ import Script from 'next/script';
 
 import { getAllUserVizById } from '@/libs/getUserViz';
 import { selectCurrentUser } from '@/features/users/userSlice';
+import { SelectComponent } from './filter';
 
 export async function getTableaToken() {
   const apiUrl = 'https://tableau-token-generator.vercel.app/token';
@@ -22,11 +23,16 @@ export async function getTableaToken() {
 
 const Tableau = () => {
   const [current, setCurrent] = useState(0);
+  const [currentFilter, setCurrentFilter] = useState('Main');
+  const [filter, setFilter] = useState([]);
   const [vista, setVista] = useState([]);
+  const [allViews, setAllViews] = useState([]);
+  const [allVizName, setAllVizName] = useState([]);
   const [vizName, setVizName] = useState([]);
   const [token, setToken] = useState(null);
 
   const apiUrl = 'https://tableau-token-generator.vercel.app/token';
+
   const getToken = async () => {
     try {
       const respuesta = await fetch(apiUrl);
@@ -44,14 +50,26 @@ const Tableau = () => {
     setToken(vartoken.token);
     const views = await getAllUserVizById(id);
     if (views.status === 200) {
-      setVista(views.vizUrls);
-      setVizName(views.vizName);
+      setAllViews(views.viewsByFilter);
+      setAllVizName(views.namesByFilter);
+      setVista(views.viewsByFilter[0]);
+      setVizName(views.namesByFilter[0]);
+      setFilter(views.menuFilters);
     }
   };
 
   useEffect(() => {
+    const newFilter = filter.indexOf(currentFilter);
+
+    if (filter.length > 1) {
+      setVista(allViews[newFilter]);
+      setVizName(allVizName[newFilter]);
+    }
+  }, [currentFilter, allViews, allVizName]);
+
+  useEffect(() => {
     getToken();
-    const intervalId = setInterval(getToken, 5 * 60 * 1000);
+    const intervalId = setInterval(getToken, 9 * 60 * 1000);
     return () => clearInterval(intervalId);
   }, []);
 
@@ -70,28 +88,36 @@ const Tableau = () => {
       <div className="flex flex-col justify-center items-center p-2">
         <h1 className="text-myPurple  text-2xl ">Hola {user.name}</h1>
         <div className="flex justify-center space-x-4">
-          {vizName.map((name, index) => {
-            return (
-              <button
-                key={index}
-                className="md:text-2xl md:px-4 md:py-2 md:bg-myGrayLight hover:underline md:hover:no-underline hover:underline-offset-4 hover:text-myGrayDark md:hover:bg-myGrayDark text-myPurple md:hover:text-myPurple"
-                onClick={() => setCurrent(index)}
-              >
-                {name}
-              </button>
-            );
-          })}
+          {filter.length > 1 && (
+            <SelectComponent options={filter} setFilter={setCurrentFilter} />
+          )}
+          {vizName?.length > 0 &&
+            vizName.map((name, index) => {
+              return (
+                <button
+                  key={index}
+                  className="md:text-2xl md:px-4 md:py-2 md:bg-myGrayLight hover:underline md:hover:no-underline hover:underline-offset-4 hover:text-myGrayDark md:hover:bg-myGrayDark text-myPurple md:hover:text-myPurple"
+                  onClick={() => setCurrent(index)}
+                >
+                  {name}
+                </button>
+              );
+            })}
         </div>
       </div>
-      <div className="w-[90vw] min-h-screen bg-slate-100 mx-auto  ">
-        <tableau-viz
-          id="tableauViz"
-          src={vista[current]}
-          token={token}
-          toolbar="bottom"
-          hide-tabs
-        ></tableau-viz>
-      </div>
+
+      {vizName?.length > 0 && (
+        <div className="w-[90vw] min-h-screen bg-slate-100 mx-auto  ">
+          <tableau-viz
+            id="tableauViz"
+            src={vista[current]}
+            token={token}
+            toolbar="bottom"
+            hide-tabs
+          ></tableau-viz>
+        </div>
+      )}
+
       <Script
         type="module"
         src="https://prod-useast-a.online.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"

@@ -12,6 +12,44 @@ export async function PUT(req: Request) {
   const body = await req.json();
   const { id } = body;
 
+  const usuarioId = id;
+
+  const vistasDelUsuario = await prismadb.vizGroupToTableauViz.findMany({
+    where: {
+      vizGroup: {
+        users: {
+          some: {
+            id: usuarioId,
+          },
+        },
+      },
+    },
+    include: {
+      tableauViz: true,
+      vizGroup: true,
+    },
+  });
+
+  const menuFilters = Array.from(
+    new Set(vistasDelUsuario.map((item) => item.groupNameFilter))
+  );
+
+  // Array para almacenar las vistas correspondientes a cada groupNameFilter, ordenadas por order_name
+  const viewsByFilter = menuFilters.map((filter) =>
+    vistasDelUsuario
+      .filter((item) => item.groupNameFilter === filter)
+      .sort((a, b) => a.tableauViz.order_name - b.tableauViz.order_name)
+      .map((item) => item.tableauViz.url)
+  );
+
+  // Array para almacenar los nombres de las vistas correspondientes a cada groupNameFilter, ordenados por order_name
+  const namesByFilter: Array<string[]> = menuFilters.map((filter) =>
+    vistasDelUsuario
+      .filter((item) => item.groupNameFilter === filter)
+      .sort((a, b) => a.tableauViz.order_name - b.tableauViz.order_name)
+      .map((item) => item.tableauViz.name)
+  );
+
   const userWithVizs = await prismadb.user.findUnique({
     where: {
       id,
@@ -50,7 +88,14 @@ export async function PUT(req: Request) {
       return v.tableauViz.name;
     }) || [];
 
-  return NextResponse.json({ status: 200, vizUrls, vizName });
+  return NextResponse.json({
+    status: 200,
+    vizUrls,
+    vizName,
+    menuFilters,
+    viewsByFilter,
+    namesByFilter,
+  });
 }
 
 export async function POST(req: Request) {
