@@ -10,7 +10,7 @@ export const SelectComponent: React.FC<SelectComponentProps> = ({
   options,
   setFilter,
 }) => {
-  const [selectedOption, setSelectedOption] = useState<string>('');
+  const [selectedOption, setSelectedOption] = useState<string>(options[0]);
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
