@@ -55,6 +55,7 @@ const Tableau = () => {
       setVista(views.viewsByFilter[0]);
       setVizName(views.namesByFilter[0]);
       setFilter(views.menuFilters);
+      setCurrentFilter(views.menuFilters[0]);
     }
   };
 
