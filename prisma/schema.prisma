@@ -76,12 +76,13 @@ model VizGroup {
 }
 
 model VizGroupToTableauViz {
-  groupName    String     @db.VarChar(15)
-  tableauVizId String     @db.VarChar(36)
-  vizGroup     VizGroup   @relation(fields: [groupName], references: [groupName])
-  tableauViz   TableauViz @relation(fields: [tableauVizId], references: [id])
+  groupName       String     @db.VarChar(15)
+  groupNameFilter String     @db.VarChar(15)
+  tableauVizId    String     @db.VarChar(36)
+  vizGroup        VizGroup   @relation(fields: [groupName], references: [groupName])
+  tableauViz      TableauViz @relation(fields: [tableauVizId], references: [id])
 
-  @@id([groupName, tableauVizId])
+  @@id([groupName, groupNameFilter, tableauVizId])
 }
 
 enum Role {
