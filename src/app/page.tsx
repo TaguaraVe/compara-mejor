@@ -1,7 +1,7 @@
 'use client';
 import Script from 'next/script';
 
-import { ContactSection } from '@/components/ContactSection';
+// import { ContactSection } from '@/components/ContactSection';
 import { Hero } from '@/components/Hero/hero';
 import { Services } from '@/components/Services';
 
@@ -11,7 +11,7 @@ export default function LandinPage() {
       <main className="relative h-full">
         <Hero />
         <Services />
-        <ContactSection />
+        {/* <ContactSection /> */}
       </main>
       <Script
         id="TagManager"
