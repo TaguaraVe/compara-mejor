@@ -27,10 +27,10 @@ const links = [
     label: 'nosotros',
     route: '/nosotros',
   },
-  // {
-  //   label: 'contáctanos',
-  //   route: '/#contact',
-  // },
+  {
+    label: 'contáctanos',
+    route: '/#contact',
+  },
 ];
 
 export const Header = () => {
