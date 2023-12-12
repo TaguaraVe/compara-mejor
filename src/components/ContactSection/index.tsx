@@ -31,7 +31,7 @@ export const ContactSection = () => {
                 className="w-[60px] h-[60px] mb-4 md:mr-2 md:mb-0 "
               />
             </span>
-            <span>ventas@comparamejor.top</span>
+            <span>ventas@comparamejor.cloud</span>
           </div>
         </div>
         <div className="grid grid-cols-1 px-2 md:px-10 py-4  gap-4  bg-myWhite bg-opacity-10 rounded-lg">
