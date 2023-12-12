@@ -1,6 +1,8 @@
 'use client';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Schema as schema } from './formValidation';
@@ -28,8 +30,16 @@ export const ContactForm = () => {
       )
       .then(
         (response) => {
-          console.log('SUCCESS!', response.status, response.text);
           setIsSending(false);
+          toast.success('Gracias por su email!', {
+            position: 'top-center',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
           reset();
         },
         (err) => {
@@ -55,6 +65,18 @@ export const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 text-myWhite lowercase">
         <CustomInput
           register={register}
