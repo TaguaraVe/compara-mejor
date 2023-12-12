@@ -43,7 +43,7 @@ export const ContactSection = () => {
               height={60}
               className="w-[60px] h-[60px] mb-4 md:mr-2 md:mb-0 "
             />
-            <span>+58414 144.3988</span>
+            <span>+58424 144.3988</span>
           </div>
         </div>
       </div>
