@@ -122,7 +122,11 @@ export const Header = () => {
             {links.map((link) => {
               return (
                 <li className="headerLink" key={link.label}>
-                  <Link href={link.route}>{link.label}</Link>
+                  {link.label === 'inicio' && user.id ? (
+                    <Link href={'/viz'}>{'visualizaciones'}</Link>
+                  ) : (
+                    <Link href={link.route}>{link.label}</Link>
+                  )}
                 </li>
               );
             })}
