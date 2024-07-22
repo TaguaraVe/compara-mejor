@@ -49,6 +49,14 @@ export async function POST(req: Request) {
       });
     }
 
+    if (user.status !== 'Vigente') {
+      return NextResponse.json({
+        status: 400,
+        success: false,
+        msg: 'El Usuario no esta activo',
+      });
+    }
+
     const currentUser = {
       id: user.id,
       name: user.name,
