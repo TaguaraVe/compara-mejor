@@ -79,7 +79,7 @@ export default function Login() {
                     error={errors?.email}
                     label="Email"
                     name="email"
-                    placeholder="Ingrese correo"
+                    placeholder="Ingrese correo/usuario"
                   />
                   <CustomInput
                     register={register}
