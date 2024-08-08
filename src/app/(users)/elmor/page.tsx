@@ -76,7 +76,10 @@ const Tableau = () => {
         <div className="w-[90vw] min-h-screen bg-slate-100 mx-auto  ">
           <tableau-viz
             id="tableauViz"
-            src={vista[current]}
+            // src={vista[current]}
+            src={
+              'https://prod-useast-a.online.tableau.com/t/jml2/views/ElmorConMenu/InicioPorMes'
+            }
             token={token}
             toolbar="bottom"
             hide-tabs
