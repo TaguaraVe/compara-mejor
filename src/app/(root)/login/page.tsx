@@ -35,7 +35,7 @@ export default function Login() {
       sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
       reset();
 
-      if (currentUser.name === 'Demo All') {
+      if (currentUser.name === 'Demo All' || currentUser.name === 'Test') {
         router.replace('/elmor');
       } else {
         router.replace('/viz');
