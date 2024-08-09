@@ -16,8 +16,8 @@ const links = [
     route: '/',
   },
   {
-    label: 'elmor',
-    route: '/elmor',
+    label: 'demo',
+    route: '/demo',
   },
   {
     label: 'beneficios',
