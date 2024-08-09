@@ -62,10 +62,6 @@ const Tableau = () => {
     }
   }, [user]);
 
-  const nextViz = () => {
-    current + 1 > vista.length ? setCurrent(0) : setCurrent(current + 1);
-  };
-
   return (
     <section className="bg-myWhite">
       <div className="flex flex-col justify-center items-center p-2">

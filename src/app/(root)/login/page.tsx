@@ -34,7 +34,12 @@ export default function Login() {
       dispatch(setUser(currentUser));
       sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
       reset();
-      router.replace('/viz');
+
+      if ((currentUser.name = 'Demo All')) {
+        router.replace('/elmor');
+      } else {
+        router.replace('/viz');
+      }
     }
   };
 
