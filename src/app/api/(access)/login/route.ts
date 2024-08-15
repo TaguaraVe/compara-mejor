@@ -62,6 +62,7 @@ export async function POST(req: Request) {
       name: user.name,
       email: user.email,
       user_role: user.user_role,
+      usuario: user.usuario,
     };
 
     return NextResponse.json({ status: 200, currentUser });
