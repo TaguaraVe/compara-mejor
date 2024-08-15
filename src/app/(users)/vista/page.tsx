@@ -119,7 +119,7 @@ const Tableau = () => {
             toolbar="bottom"
             hide-tabs
           >
-            <viz-filter field="Usuario" value="Bebidas&Licores"></viz-filter>
+            <viz-filter field="Usuario" value={user.usuario}></viz-filter>
           </tableau-viz>
         </div>
       )}
