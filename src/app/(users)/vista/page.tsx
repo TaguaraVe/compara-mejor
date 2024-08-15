@@ -118,7 +118,9 @@ const Tableau = () => {
             token={token}
             toolbar="bottom"
             hide-tabs
-          ></tableau-viz>
+          >
+            <viz-filter field="Usuario" value="CestaBasica"></viz-filter>
+          </tableau-viz>
         </div>
       )}
 
