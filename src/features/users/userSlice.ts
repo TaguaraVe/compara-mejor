@@ -19,6 +19,7 @@ const user: User =
         email: '',
         name: '',
         user_role: '',
+        usuario: '',
       };
 
 const initialState = {
@@ -40,6 +41,7 @@ export const userSlice = createSlice({
         email: '',
         name: '',
         user_role: '',
+        usuario: '',
       };
     },
     openModalEmail: (state) => {
