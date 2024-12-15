@@ -1,8 +1,6 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  experimental: {
-    serverComponentsExternalPackages: ['bcrypt'],
-  },
+import type { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
@@ -12,4 +10,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
