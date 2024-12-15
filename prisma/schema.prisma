@@ -7,64 +7,25 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Market {
-  id        String    @id @default(uuid()) @db.VarChar(40)
-  name      String    @db.VarChar(25)
-  createdAt DateTime  @default(now())
-  products  Product[]
-}
-
-model Product {
-  id           String         @id @default(uuid()) @db.VarChar(40)
-  marketId     String         @db.VarChar(20)
-  codWeb       String         @db.VarChar(200)
-  productName  String         @db.VarChar(120)
-  codCM        String         @unique @db.VarChar(15)
-  Consolidated Consolidated[]
-  prices       Price[]
-  market       Market         @relation(fields: [marketId], references: [id])
-
-  @@index([marketId], map: "Product_marketId_fkey")
-}
-
-model Consolidated {
-  id         String  @id @default(uuid()) @db.VarChar(40)
-  main_group String  @db.VarChar(50)
-  subgroup   String  @db.VarChar(50)
-  category   String  @db.VarChar(50)
-  codCM      String  @db.VarChar(15)
-  nameCM     String  @db.VarChar(120)
-  product    Product @relation(fields: [codCM], references: [codCM])
-
-  @@index([codCM], map: "Consolidated_codCM_fkey")
-}
-
-model Price {
-  id        String   @id @default(uuid()) @db.VarChar(40)
-  productId String   @db.VarChar(20)
-  date      DateTime
-  price     Decimal  @db.Decimal(11, 4)
-  product   Product  @relation(fields: [productId], references: [id])
-
-  @@index([productId], map: "Price_productId_fkey")
-}
-
 model User {
   id        String    @id @default(uuid()) @db.VarChar(36)
   name      String    @db.VarChar(100)
   email     String?   @db.VarChar(100)
   password  String    @db.VarChar(150)
   user_role Role      @default(USUARIO)
-  vizGroup  VizGroup? @relation(fields: [groupName], references: [groupName])
   groupName String?   @db.VarChar(15)
   status    String    @default("Vigente") @db.VarChar(15)
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+  vizGroup  VizGroup? @relation(fields: [groupName], references: [groupName])
+
+  @@index([groupName], map: "User_groupName_fkey")
 }
 
 model TableauViz {
   id         String                 @id @default(uuid()) @db.VarChar(36)
   name       String                 @db.VarChar(15)
+  status     String                 @default("staging") @db.VarChar(10)
   order_name Int
   url        String                 @unique @db.VarChar(250)
   vizGroups  VizGroupToTableauViz[]
@@ -78,12 +39,257 @@ model VizGroup {
 
 model VizGroupToTableauViz {
   groupName       String     @db.VarChar(15)
-  groupNameFilter String     @db.VarChar(15)
+  groupNameFilter String     @default("Main") @db.VarChar(25)
   tableauVizId    String     @db.VarChar(36)
   vizGroup        VizGroup   @relation(fields: [groupName], references: [groupName])
   tableauViz      TableauViz @relation(fields: [tableauVizId], references: [id])
 
   @@id([groupName, groupNameFilter, tableauVizId])
+  @@index([tableauVizId], map: "VizGroupToTableauViz_tableauVizId_fkey")
+}
+
+model Comparativos {
+  order      Int
+  market     String   @db.VarChar(15)
+  cod_market String   @db.VarChar(15)
+  CM_code    String   @db.VarChar(15)
+  date       DateTime @db.Date
+  MktShare   Decimal  @db.Decimal(9, 6)
+  PMktShr    Decimal  @db.Decimal(9, 6)
+
+  @@id([cod_market, CM_code, date])
+}
+
+model New_Prices {
+  id       BigInt   @id @default(autoincrement())
+  date     DateTime @db.Date
+  mercado  String   @db.VarChar(25)
+  branch   String   @default("principal") @db.VarChar(15)
+  New_code String   @db.VarChar(15)
+  price    Decimal  @db.Decimal(10, 2)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model PriceAverage {
+  date     DateTime? @db.Date
+  mercado  String    @db.VarChar(25)
+  branch   String    @default("principal") @db.VarChar(15)
+  New_code String    @db.VarChar(15)
+  price    Decimal?  @db.Decimal(14, 6)
+
+  @@ignore
+}
+
+model SalesByWeek {
+  id           Int     @id @default(autoincrement())
+  market       String  @db.VarChar(25)
+  year         Int
+  week         Int
+  product_code String  @db.VarChar(15)
+  units        Int
+  amount       Decimal @db.Decimal(14, 4)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model SnaksPrices {
+  date     DateTime @db.Date
+  mercado  String   @db.VarChar(25)
+  branch   String   @default("principal") @db.VarChar(15)
+  New_code String   @db.VarChar(15)
+  price    Decimal  @db.Decimal(11, 4)
+
+  @@ignore
+}
+
+model TopByUser {
+  id      Int    @id @default(autoincrement())
+  order   Int
+  user_id String @db.VarChar(36)
+  CM_Code String @db.VarChar(15)
+}
+
+model Xana {
+  barcode    String  @unique(map: "barcode") @db.VarChar(20)
+  Xana_Code  String  @unique(map: "Xana_Code") @db.VarChar(15)
+  name       String  @db.VarChar(100)
+  Type       String  @default("Otros") @db.VarChar(25)
+  CM_Code    String  @db.VarChar(15)
+  group      String  @default("Otros") @db.VarChar(25)
+  Xana_Price Decimal @db.Decimal(11, 4)
+}
+
+model comparative_name {
+  market      String  @db.VarChar(15)
+  code_market String  @id @db.VarChar(15)
+  name        String  @db.VarChar(100)
+  PMVPI       Decimal @db.Decimal(9, 4)
+  PMVP        Decimal @db.Decimal(9, 4)
+}
+
+model consolidado {
+  new_code        String  @unique(map: "New_Code") @db.VarChar(15)
+  product_name    String  @db.VarChar(100)
+  presentation    String? @db.VarChar(15)
+  units           Int?
+  main_category   String  @db.VarChar(100)
+  subgroup        String  @db.VarChar(100)
+  category        String  @db.VarChar(100)
+  brand           String  @db.VarChar(25)
+  code_ElPlazas   String  @db.VarChar(15)
+  code_ElGama     String  @db.VarChar(15)
+  code_Central    String  @db.VarChar(15)
+  code_Luvebras   String  @db.VarChar(15)
+  code_Kalea      String  @db.VarChar(15)
+  Code_Farmatodo  String  @db.VarChar(15)
+  code_FarmaValor String  @db.VarChar(15)
+  Code_Garzon     String  @db.VarChar(15)
+  Code_SantoTome  String  @db.VarChar(15)
+  Code_SuperFresh String  @db.VarChar(15)
+}
+
+model elmor_last_week {
+  id                   Int      @id @default(autoincrement())
+  new_code             String   @db.VarChar(15)
+  product_name         String?  @db.VarChar(100)
+  product_brand        String?  @db.VarChar(25)
+  product_presentation String?  @db.VarChar(15)
+  product_units        Int?
+  date                 DateTime @db.Date
+  mercado              String   @db.VarChar(25)
+  market_code          String   @db.VarChar(15)
+  price                Decimal  @db.Decimal(11, 4)
+  priceBs              Decimal  @db.Decimal(11, 4)
+  tag_promo            String?  @db.VarChar(15)
+
+  @@map("elmor-last-week")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model monthPrice {
+  date     DateTime @db.Date
+  mercado  String   @db.VarChar(25)
+  branch   String   @default("principal") @db.VarChar(15)
+  New_code String   @db.VarChar(15)
+  price    Decimal  @db.Decimal(10, 2)
+
+  @@index([branch], map: "branch")
+  @@index([New_code], map: "code")
+  @@index([date], map: "date")
+  @@index([mercado], map: "market")
+  @@ignore
+}
+
+model price_elmor {
+  id                   Int      @id @default(autoincrement())
+  new_code             String   @db.VarChar(15)
+  product_name         String?  @db.VarChar(100)
+  product_family       String?  @db.VarChar(50)
+  product_group        String?  @db.VarChar(50)
+  product_category     String?  @db.VarChar(25)
+  product_brand        String?  @db.VarChar(25)
+  product_presentation String?  @db.VarChar(15)
+  product_units        Int?
+  date                 DateTime @db.Date
+  mercado              String   @db.VarChar(25)
+  market_code          String   @db.VarChar(15)
+  price                Decimal  @db.Decimal(11, 4)
+  priceBs              Decimal  @db.Decimal(11, 6)
+
+  @@map("price-elmor")
+}
+
+model price_far_bs {
+  id                   Int      @id @default(autoincrement())
+  new_code             String   @db.VarChar(15)
+  product_name         String?  @db.VarChar(100)
+  product_brand        String?  @db.VarChar(25)
+  product_presentation String?  @db.VarChar(15)
+  product_units        Int?
+  date                 DateTime @db.Date
+  mercado              String   @db.VarChar(25)
+  market_code          String   @db.VarChar(15)
+  price                Decimal  @db.Decimal(11, 4)
+  priceBs              Decimal  @db.Decimal(11, 4)
+  tag_promo            String?  @db.VarChar(15)
+
+  @@map("price-far-bs")
+}
+
+model price_farmacia {
+  id            Int      @id @default(autoincrement())
+  new_code      String   @db.VarChar(15)
+  product_name  String?  @db.VarChar(100)
+  product_brand String?  @db.VarChar(25)
+  date          DateTime @db.Date
+  mercado       String   @db.VarChar(25)
+  market_code   String   @db.VarChar(15)
+  price         Decimal  @db.Decimal(11, 4)
+
+  @@map("price-farmacia")
+}
+
+model price_test {
+  id            Int      @id @default(autoincrement())
+  date          DateTime @db.Date
+  mercado       String   @db.VarChar(25)
+  branch        String   @default("principal") @db.VarChar(15)
+  new_code      String   @db.VarChar(15)
+  market_code   String   @db.VarChar(15)
+  price         Decimal  @db.Decimal(11, 4)
+  price_by_unit Decimal  @db.Decimal(11, 4)
+
+  @@map("price-test")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model prices {
+  date      DateTime @db.Date
+  mercado   String   @db.VarChar(25)
+  branch    String   @default("principal") @db.VarChar(15)
+  New_code  String   @db.VarChar(15)
+  price     Decimal  @db.Decimal(11, 4)
+  tag_promo String?  @db.VarChar(15)
+
+  @@index([branch], map: "branch")
+  @@index([New_code], map: "code")
+  @@index([date], map: "date")
+  @@index([mercado], map: "market")
+  @@ignore
+}
+
+model prices_backup {
+  id        BigInt   @id @default(autoincrement())
+  date      DateTime @db.Date
+  mercado   String   @db.VarChar(25)
+  branch    String   @default("principal") @db.VarChar(15)
+  New_code  String   @db.VarChar(15)
+  price     Decimal  @db.Decimal(12, 4)
+  tag_promo String?  @db.VarChar(15)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model promotions {
+  market         String  @db.VarChar(25)
+  week           String  @default(dbgenerated("(current_timestamp())")) @db.VarChar(15)
+  CM_Code        String  @db.VarChar(15)
+  regularPrice   Decimal @db.Decimal(10, 2)
+  sugestedPrices Decimal @db.Decimal(10, 2)
+
+  @@ignore
+}
+
+model tasas {
+  id       Int      @default(autoincrement())
+  date     DateTime @db.Date
+  tasa     Float
+  paralelo Float
+
+  @@id([id, date])
+}
+
+model users {
+  email    String @unique(map: "email") @db.VarChar(150)
+  password String @db.VarChar(150)
 }
 
 enum Role {
