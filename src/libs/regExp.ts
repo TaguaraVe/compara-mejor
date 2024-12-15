@@ -10,7 +10,7 @@ export const regExp = {
   VesBankAccount: /^(\d{5})(\d{15})$/, // Codigo de cuenta venezolano
 };
 
-export const formatPhoneNumber = (phone) => {
+export const formatPhoneNumber = (phone: string) => {
   const phone1 = phone.replace(/[^\d]/g, '');
 
   return (
@@ -18,7 +18,7 @@ export const formatPhoneNumber = (phone) => {
   );
 };
 
-export const normalizeCardNumber = (value) => {
+export const normalizeCardNumber = (value: string) => {
   return (
     value
       .replace(/\s/g, '')
@@ -34,4 +34,23 @@ export function validEmail(email: string) {
 
 export function validPassword(password: string) {
   return regExp.password.test(password);
+}
+
+export function validDate(dateString: string): boolean {
+  // Definimos una expresión regular para validar el formato aaaa-mm-dd
+  const regex = /^\d{4}-\d{2}-\d{2}$/;
+
+  // Verificamos si la cadena cumple con el formato
+  if (!regex.test(dateString)) {
+    return false;
+  }
+
+  // Convertimos la cadena a un objeto Date
+  const inputDate = new Date(dateString);
+
+  // Obtenemos la fecha actual
+  const currentData = new Date();
+
+  // Verificamos si ambas fechas son válidas y si la ingresada es menor
+  return !isNaN(inputDate.getTime()) && inputDate < currentData;
 }
