@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prismadb } from '@/libs/prismadb';
 import { validDate } from '@/libs/regExp';
 
-interface XanitaPros {
+interface XanaPros {
   codeCM: string | null;
   barcodeCM: string | null;
   nameCM: string | null;
@@ -19,6 +19,21 @@ interface DataItem {
   mercado: string;
   price: number;
   priceBs: number;
+  tag_promo: string;
+}
+
+interface PriceData {
+  id: number;
+  new_code: string;
+  product_name: string;
+  product_brand: string;
+  product_presentation: string;
+  product_units: number;
+  date: string;
+  mercado: string;
+  market_code: string;
+  price: string;
+  priceBs: string;
   tag_promo: string;
 }
 
@@ -65,7 +80,6 @@ function groupAndCalculate(data: DataItem[]): {
 
     const priceAvg =
       price.reduce((sum, price) => sum + price * 1, 0) / price.length;
-    console.log('array price', price, 'length', price.length, priceAvg);
 
     const priceAvgBs =
       priceBs.reduce((sum, price) => sum + price * 1, 0) / priceBs.length;
@@ -84,8 +98,9 @@ function groupAndCalculate(data: DataItem[]): {
 
 export async function GET(req: NextRequest) {
   let pricesQuery: any = [];
+  let inputDate: Date = new Date();
 
-  let xanita: XanitaPros = {
+  let xanaData: XanaPros = {
     codeCM: null,
     barcodeCM: null,
     nameCM: null,
@@ -125,71 +140,45 @@ export async function GET(req: NextRequest) {
         });
       }
 
-      xanita.barcodeCM = xanaProduct?.barcode || null;
-      xanita.codeCM = xanaProduct?.CM_Code || null;
-      xanita.nameCM = xanaProduct?.name || null;
+      xanaData.barcodeCM = xanaProduct?.barcode || null;
+      xanaData.codeCM = xanaProduct?.CM_Code || null;
+      xanaData.nameCM = xanaProduct?.name || null;
     }
 
-    const inputDate = new Date(date);
-    // if (date && barcode) {
-    //   pricesQuery = await prismadb.price_far_bs.findMany({
-    //     where: {
-    //       date: inputDate,
-    //       new_code: xanita.codeCM,
-    //     },
-    //   });
-    // } else if (barcode) {
-    //   pricesQuery = await prismadb.price_far_bs.findMany({
-    //     where: {
-    //       new_code: xanita.codeCM,
-    //     },
-    //   });
-    // } else {
-    //   pricesQuery = await prismadb.price_far_bs.findMany({
-    //     where: {
-    //       date: inputDate,
-    //     },
-    //   });
-    // }
-    // const allXana = await prismadb.xana.findMany({});
-    // const pricesQuery = await prismadb.price_far_bs.findMany({
-    //   where: {
-    //     date: inputDate,
-    //     new_code: {
-    //       in: allXana.map((product) => product.CM_Code),
-    //     },
-    //   },
-    // });
-
-    // const pricesQuery = allXana.map((cod)=>{
-
-    //    await prismadb.price_far_bs.findFirst({
-    //     where: {
-    //       date: inputDate,
-    //       new_code: cod.CM_Code
-    //     },
-
-    // })
+    if (date) {
+      inputDate = new Date(date);
+    }
 
     pricesQuery = await prismadb.price_far_bs.findMany({
       where: {
         ...(date && { date: inputDate }),
-        ...(xanita.codeCM && { new_code: xanita.codeCM }),
+        ...(xanaData.codeCM && { new_code: xanaData.codeCM }),
       },
     });
 
     const summarizedData = groupAndCalculate(pricesQuery);
-    console.log(summarizedData);
+
+    const xanaPrice = pricesQuery.find(
+      (item: PriceData) => item.mercado === 'Xana'
+    );
 
     return NextResponse.json({
       status: 200,
       quantities: pricesQuery.length,
       date,
-      xanita,
+      barcode: xanaData.barcodeCM,
+      code: xanaData.codeCM,
+      name: xanaData.nameCM,
+      precioXana: xanaPrice.price,
+      precioXanaBs: xanaPrice.priceBs,
+      precioMin: summarizedData[0].priceMin,
+      precioMinBs: summarizedData[0].priceMinBs,
+      precioMax: summarizedData[0].priceMax,
+      precioMaxBs: summarizedData[0].priceMaxBs,
+      precioAvg: summarizedData[0].priceAvg,
+      precioAvgBs: summarizedData[0].priceAvgBs,
       pricesQuery,
-      // allXana,
     });
-    const data = 'Preparar Datos';
   } catch (error) {
     console.log('[GET PRICES]', error);
     return new NextResponse('Internal error', { status: 500 });
