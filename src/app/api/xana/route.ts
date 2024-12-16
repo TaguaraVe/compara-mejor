@@ -114,8 +114,9 @@ function groupAndCalculate(
 
   // Add barcode from Xana table if not provided
   if (!barcode && xanaTable) {
+    console.log('viene esto en barcode', barcode, xanaTable?.length);
     groupedMap.forEach((group) => {
-      const xanaItem = xanaTable.find((x) => x.new_code === group.new_code);
+      const xanaItem = xanaTable.find((x) => x.CM_Code === group.new_code);
       if (xanaItem) {
         group.barcode = xanaItem.barcode;
       }
@@ -243,6 +244,8 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({
       status: 200,
+      date,
+      barcode,
       quantities: summarizedData.length,
       summarizedData,
     });
