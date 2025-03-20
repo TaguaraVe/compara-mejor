@@ -10,7 +10,7 @@ export const whatWeDoData = [
   {
     id: '001',
     title: 'analisis de precio y surtido',
-    text: 'arecios competitivos y un surtido adecuado son claves para el éxito. Nuestra plataforma te proporciona los datos necesarios para   lograrlo.',
+    text: 'precios competitivos y un surtido adecuado son claves para el éxito. Nuestra plataforma te proporciona los datos necesarios para lograrlo.',
     alt: 'Image1',
     image: Image1,
   },
@@ -33,21 +33,21 @@ export const whatWeDoData = [
 export const howWeDoData = [
   {
     id: '001',
-    title: '+12.000 skus',
+    title: '+25.000 skus',
     text: 'skus con seguimiento diario',
     alt: 'Image1',
     image: HowImage1,
   },
   {
     id: '002',
-    title: '+6',
+    title: '+12',
     text: 'Meses de histórico de precios',
     alt: 'Image1',
     image: HowImage2,
   },
   {
     id: '003',
-    title: '+50',
+    title: '+10',
     text: 'Puntos de Venta',
     alt: 'Image1',
     image: HowImage3,
