@@ -5,7 +5,7 @@ const About = () => {
 
       <div className="flex flex-col max-w-6xl mx-auto text-xl ">
         <p className="mb-4">
-          En <span className="font-semibold  text-2xl"> Compara Mejor </span>
+          En <span className="font-bold  text-2xl"> Compara Mejor </span>
           somo un grupo joven con amplia experiencia en el en modelado de datos,
           analítica descriptiva y predictiva.
         </p>
