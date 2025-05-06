@@ -13,6 +13,7 @@ model User {
   email     String?   @db.VarChar(100)
   password  String    @db.VarChar(150)
   user_role Role      @default(USUARIO)
+  usuario   String?   @db.VarChar(36)
   groupName String?   @db.VarChar(15)
   status    String    @default("Vigente") @db.VarChar(15)
   createdAt DateTime  @default(now())
@@ -60,26 +61,6 @@ model Comparativos {
   @@id([cod_market, CM_code, date])
 }
 
-model New_Prices {
-  id       BigInt   @id @default(autoincrement())
-  date     DateTime @db.Date
-  mercado  String   @db.VarChar(25)
-  branch   String   @default("principal") @db.VarChar(15)
-  New_code String   @db.VarChar(15)
-  price    Decimal  @db.Decimal(10, 2)
-}
-
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-model PriceAverage {
-  date     DateTime? @db.Date
-  mercado  String    @db.VarChar(25)
-  branch   String    @default("principal") @db.VarChar(15)
-  New_code String    @db.VarChar(15)
-  price    Decimal?  @db.Decimal(14, 6)
-
-  @@ignore
-}
-
 model SalesByWeek {
   id           Int     @id @default(autoincrement())
   market       String  @db.VarChar(25)
@@ -88,17 +69,6 @@ model SalesByWeek {
   product_code String  @db.VarChar(15)
   units        Int
   amount       Decimal @db.Decimal(14, 4)
-}
-
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-model SnaksPrices {
-  date     DateTime @db.Date
-  mercado  String   @db.VarChar(25)
-  branch   String   @default("principal") @db.VarChar(15)
-  New_code String   @db.VarChar(15)
-  price    Decimal  @db.Decimal(11, 4)
-
-  @@ignore
 }
 
 model TopByUser {
@@ -147,57 +117,6 @@ model consolidado {
   Code_SuperFresh String  @db.VarChar(15)
 }
 
-model elmor_last_week {
-  id                   Int      @id @default(autoincrement())
-  new_code             String   @db.VarChar(15)
-  product_name         String?  @db.VarChar(100)
-  product_brand        String?  @db.VarChar(25)
-  product_presentation String?  @db.VarChar(15)
-  product_units        Int?
-  date                 DateTime @db.Date
-  mercado              String   @db.VarChar(25)
-  market_code          String   @db.VarChar(15)
-  price                Decimal  @db.Decimal(11, 4)
-  priceBs              Decimal  @db.Decimal(11, 4)
-  tag_promo            String?  @db.VarChar(15)
-
-  @@map("elmor-last-week")
-}
-
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-model monthPrice {
-  date     DateTime @db.Date
-  mercado  String   @db.VarChar(25)
-  branch   String   @default("principal") @db.VarChar(15)
-  New_code String   @db.VarChar(15)
-  price    Decimal  @db.Decimal(10, 2)
-
-  @@index([branch], map: "branch")
-  @@index([New_code], map: "code")
-  @@index([date], map: "date")
-  @@index([mercado], map: "market")
-  @@ignore
-}
-
-model price_elmor {
-  id                   Int      @id @default(autoincrement())
-  new_code             String   @db.VarChar(15)
-  product_name         String?  @db.VarChar(100)
-  product_family       String?  @db.VarChar(50)
-  product_group        String?  @db.VarChar(50)
-  product_category     String?  @db.VarChar(25)
-  product_brand        String?  @db.VarChar(25)
-  product_presentation String?  @db.VarChar(15)
-  product_units        Int?
-  date                 DateTime @db.Date
-  mercado              String   @db.VarChar(25)
-  market_code          String   @db.VarChar(15)
-  price                Decimal  @db.Decimal(11, 4)
-  priceBs              Decimal  @db.Decimal(11, 6)
-
-  @@map("price-elmor")
-}
-
 model price_far_bs {
   id                   Int      @id @default(autoincrement())
   new_code             String   @db.VarChar(15)
@@ -215,69 +134,6 @@ model price_far_bs {
   @@map("price-far-bs")
 }
 
-model price_farmacia {
-  id            Int      @id @default(autoincrement())
-  new_code      String   @db.VarChar(15)
-  product_name  String?  @db.VarChar(100)
-  product_brand String?  @db.VarChar(25)
-  date          DateTime @db.Date
-  mercado       String   @db.VarChar(25)
-  market_code   String   @db.VarChar(15)
-  price         Decimal  @db.Decimal(11, 4)
-
-  @@map("price-farmacia")
-}
-
-model price_test {
-  id            Int      @id @default(autoincrement())
-  date          DateTime @db.Date
-  mercado       String   @db.VarChar(25)
-  branch        String   @default("principal") @db.VarChar(15)
-  new_code      String   @db.VarChar(15)
-  market_code   String   @db.VarChar(15)
-  price         Decimal  @db.Decimal(11, 4)
-  price_by_unit Decimal  @db.Decimal(11, 4)
-
-  @@map("price-test")
-}
-
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-model prices {
-  date      DateTime @db.Date
-  mercado   String   @db.VarChar(25)
-  branch    String   @default("principal") @db.VarChar(15)
-  New_code  String   @db.VarChar(15)
-  price     Decimal  @db.Decimal(11, 4)
-  tag_promo String?  @db.VarChar(15)
-
-  @@index([branch], map: "branch")
-  @@index([New_code], map: "code")
-  @@index([date], map: "date")
-  @@index([mercado], map: "market")
-  @@ignore
-}
-
-model prices_backup {
-  id        BigInt   @id @default(autoincrement())
-  date      DateTime @db.Date
-  mercado   String   @db.VarChar(25)
-  branch    String   @default("principal") @db.VarChar(15)
-  New_code  String   @db.VarChar(15)
-  price     Decimal  @db.Decimal(12, 4)
-  tag_promo String?  @db.VarChar(15)
-}
-
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-model promotions {
-  market         String  @db.VarChar(25)
-  week           String  @default(dbgenerated("(current_timestamp())")) @db.VarChar(15)
-  CM_Code        String  @db.VarChar(15)
-  regularPrice   Decimal @db.Decimal(10, 2)
-  sugestedPrices Decimal @db.Decimal(10, 2)
-
-  @@ignore
-}
-
 model tasas {
   id       Int      @default(autoincrement())
   date     DateTime @db.Date
@@ -285,11 +141,6 @@ model tasas {
   paralelo Float
 
   @@id([id, date])
-}
-
-model users {
-  email    String @unique(map: "email") @db.VarChar(150)
-  password String @db.VarChar(150)
 }
 
 enum Role {
