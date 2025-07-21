@@ -198,8 +198,6 @@ export async function GET(req: NextRequest) {
         },
       });
 
-      console.log('Probando');
-
       if (xanaProduct == null) {
         return NextResponse.json({
           status: 404,
@@ -222,7 +220,7 @@ export async function GET(req: NextRequest) {
         select: { CM_Code: true, barcode: true, name: true },
       });
 
-      pricesQuery = await prismadb.price_far_bs.findMany({
+      pricesQuery = await prismadb.price_far_xana_bs.findMany({
         where: {
           date: inputDate,
           new_code: {
