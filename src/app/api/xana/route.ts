@@ -114,7 +114,6 @@ function groupAndCalculate(
 
   // Add barcode from Xana table if not provided
   if (!barcode && xanaTable) {
-    console.log('viene esto en barcode', barcode, xanaTable?.length);
     groupedMap.forEach((group) => {
       const xanaItem = xanaTable.find((x) => x.CM_Code === group.new_code);
       if (xanaItem) {
@@ -162,7 +161,6 @@ function combinarArrays(
 
 export async function GET(req: NextRequest) {
   let pricesQuery: PriceData[] = [];
-  let datosCompletos: PriceData[] = [];
   let summarizedData: GroupedDataItem[] = [];
   let allXana: Producto[] = [];
   let inputDate: Date = new Date();
@@ -222,7 +220,7 @@ export async function GET(req: NextRequest) {
         select: { CM_Code: true, barcode: true, name: true },
       });
 
-      pricesQuery = await prismadb.price_far_bs.findMany({
+      pricesQuery = await prismadb.price_far_xana_bs.findMany({
         where: {
           date: inputDate,
           new_code: {
@@ -232,7 +230,7 @@ export async function GET(req: NextRequest) {
       });
       // datosCompletos = combinarArrays(allXana, pricesQuery);
     } else {
-      pricesQuery = await prismadb.price_far_bs.findMany({
+      pricesQuery = await prismadb.price_far_xana_bs.findMany({
         where: {
           ...(date && { date: inputDate }),
           ...(xanaData.codeCM && { new_code: xanaData.codeCM }),
