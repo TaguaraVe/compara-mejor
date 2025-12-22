@@ -160,6 +160,14 @@ function combinarArrays(
 }
 
 export async function GET(req: NextRequest) {
+  return NextResponse.json({
+    status: 403,
+    error: 'account_inactive',
+    msg: 'Su cuenta ha sido desactivada. Contacta al soporte.',
+  });
+
+  {
+  }
   let pricesQuery: PriceData[] = [];
   let summarizedData: GroupedDataItem[] = [];
   let allXana: Producto[] = [];
